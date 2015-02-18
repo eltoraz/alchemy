@@ -4,14 +4,14 @@ An alchemy ingredient
 class Reagent:
     # Name: self-explanatory - string
     # Description: short flavor text - string
-    # Essences: properties that react when mixing - dict {essences (string): strength (number)}
-    def __init__(self, name, description, essences={}):
+    # Elements: affinities/attributes of the reagent that determine properties - dict {element (string): strength (number)}
+    def __init__(self, name, description, elements={}):
         self.name = name
         self.description = description
-        self.essences = essences
+        self.elements = elements
 
     def __repr__(self):
-        return {'name': self.name, 'description': self.description, 'essences': self.essences}.__str__()
+        return {'name': self.name, 'description': self.description, 'elements': self.elements}.__str__()
 
     def __str__(self):
         return __repr__(self)
