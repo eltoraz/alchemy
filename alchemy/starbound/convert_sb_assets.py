@@ -12,8 +12,7 @@ effect_list = []
 
 '''
 TODO:
-- figure out appropriate elements to replace SB effects (also conversion of SB effect
-  strength/duration -> element strength/purity/concentration/whatever)
+- conversion of SB effect strength/duration -> element strength/purity/concentration/whatever
 '''
 
 for crop_filename in listdir(assets_path):

@@ -1,0 +1,22 @@
+{
+  "jumpboost25": "air",
+  "maxhealthboost10": "earth",
+  "foodheal50": "water",
+  "foodheal10": "water",
+  "foodheal25": "water",
+  "maxhealthboost5": "earth",
+  "thorns": "crystal",
+  "maxenergyboost20": "spirit",
+  "energyregen96": "aura",
+  "maxenergyboost10": "spirit",
+  "runboost25": "air",
+  "rage": "storm",
+  "energyregen192": "aura",
+  "weakpoison": "poison",
+  "maxenergyboost60": "spirit",
+  "lowgrav": "magnet",
+  "maxhealthboost20": "earth",
+  "burning": "fire",
+  "antidote": "poison",
+  "regeneration1": "water"
+}
