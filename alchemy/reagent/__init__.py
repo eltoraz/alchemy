@@ -4,8 +4,9 @@ An alchemy ingredient
 class Reagent:
     # Name: self-explanatory - string
     # Description: short flavor text - string
-    # Elements: affinities/attributes of the reagent that determine properties - dict {element (string): strength (number)}
-    def __init__(self, name='', description='', elements={}):
+    # Elements: affinities/attributes of the reagent that determine properties - list of dict
+    #           {"element", "magnitude"}
+    def __init__(self, name='', description='', elements=[]):
         self.name = name
         self.description = description
         self.elements = elements

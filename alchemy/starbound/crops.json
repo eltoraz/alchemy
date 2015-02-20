@@ -1,277 +1,459 @@
 [
   {
-    "name": "Feathercrown",
-    "elements": {
-      "jumpboost25": 30,
-      "maxhealthboost10": 105
-    },
-    "description": "Feathercrown, you have to pluck it before consuming."
+    "elements": [
+      {
+        "duration": 30,
+        "magnitude": 25,
+        "effect": "jumpboost25"
+      },
+      {
+        "duration": 105,
+        "magnitude": 10,
+        "effect": "maxhealthboost10"
+      }
+    ],
+    "description": "Feathercrown, you have to pluck it before consuming.",
+    "name": "Feathercrown"
   },
   {
-    "name": "Rice",
-    "elements": {
-      "foodheal50": 60
-    },
-    "description": "Rice. Grains of goodness."
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 50,
+        "effect": "foodheal50"
+      }
+    ],
+    "description": "Rice. Grains of goodness.",
+    "name": "Rice"
   },
   {
-    "name": "Currentcorn",
-    "elements": {
-      "foodheal10": 60
-    },
-    "description": "Grows currentcorn, full of acid. Not good for fleshy creatures."
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 10,
+        "effect": "foodheal10"
+      }
+    ],
+    "description": "Grows currentcorn, full of acid. Not good for fleshy creatures.",
+    "name": "Currentcorn"
   },
   {
-    "name": "Beakseed",
-    "elements": {
-      "maxhealthboost5": 90,
-      "foodheal25": 60
-    },
-    "description": "Beakseed. Mmm crunchy."
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 25,
+        "effect": "foodheal25"
+      },
+      {
+        "duration": 90,
+        "magnitude": 5,
+        "effect": "maxhealthboost5"
+      }
+    ],
+    "description": "Beakseed. Mmm crunchy.",
+    "name": "Beakseed"
   },
   {
-    "name": "Automato",
-    "elements": {
-      "foodheal10": 60
-    },
-    "description": "Automatos! Be sure to spit out the screws."
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 10,
+        "effect": "foodheal10"
+      }
+    ],
+    "description": "Automatos! Be sure to spit out the screws.",
+    "name": "Automato"
   },
   {
-    "name": "Tomato",
-    "elements": {
-      "foodheal10": 60
-    },
-    "description": "A ripe, juicy tomato!"
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 10,
+        "effect": "foodheal10"
+      }
+    ],
+    "description": "A ripe, juicy tomato!",
+    "name": "Tomato"
   },
   {
-    "name": "Thorn Fruit",
-    "elements": {
-      "thorns": 30
-    },
-    "description": "So long as you watch out for the thorns, these are delicious."
+    "elements": [
+      {
+        "duration": 30,
+        "effect": "thorns"
+      }
+    ],
+    "description": "So long as you watch out for the thorns, these are delicious.",
+    "name": "Thorn Fruit"
   },
   {
-    "name": "Grapes",
-    "elements": {
-      "maxenergyboost20": 90
-    },
-    "description": "Grapes, nature's snackfood."
+    "elements": [
+      {
+        "duration": 90,
+        "magnitude": 20,
+        "effect": "maxenergyboost20"
+      }
+    ],
+    "description": "Grapes, nature's snackfood.",
+    "name": "Grapes"
   },
   {
-    "name": "Coffee Beans",
-    "elements": {
-      "energyregen96": 60,
-      "maxenergyboost10": 90
-    },
-    "description": "Bitter coffee beans"
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 96,
+        "effect": "energyregen96"
+      },
+      {
+        "duration": 90,
+        "magnitude": 10,
+        "effect": "maxenergyboost10"
+      }
+    ],
+    "description": "Bitter coffee beans",
+    "name": "Coffee Beans"
   },
   {
-    "name": "Reefpod",
-    "elements": {
-      "maxhealthboost5": 90,
-      "maxenergyboost10": 90
-    },
-    "description": "Fruit of the ocean."
+    "elements": [
+      {
+        "duration": 90,
+        "magnitude": 10,
+        "effect": "maxenergyboost10"
+      },
+      {
+        "duration": 90,
+        "magnitude": 5,
+        "effect": "maxhealthboost5"
+      }
+    ],
+    "description": "Fruit of the ocean.",
+    "name": "Reefpod"
   },
   {
-    "name": "Sugar",
-    "elements": {},
-    "description": "Pure, unadulterated sugary goodness."
+    "elements": [],
+    "description": "Pure, unadulterated sugary goodness.",
+    "name": "Sugar"
   },
   {
-    "name": "Avesmingo",
-    "elements": {
-      "runboost25": 15,
-      "jumpboost25": 15
-    },
-    "description": "Avesmingo, the plant of a 100 different flavours."
+    "elements": [
+      {
+        "duration": 15,
+        "magnitude": 25,
+        "effect": "runboost25"
+      },
+      {
+        "duration": 15,
+        "magnitude": 25,
+        "effect": "jumpboost25"
+      }
+    ],
+    "description": "Avesmingo, the plant of a 100 different flavours.",
+    "name": "Avesmingo"
   },
   {
-    "name": "Wheat",
-    "elements": {},
-    "description": "Essential for making bread."
+    "elements": [],
+    "description": "Essential for making bread.",
+    "name": "Wheat"
   },
   {
-    "name": "Kiwi",
-    "elements": {
-      "jumpboost25": 60
-    },
-    "description": "Soft texture and sweet flavour, yum."
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 25,
+        "effect": "jumpboost25"
+      }
+    ],
+    "description": "Soft texture and sweet flavour, yum.",
+    "name": "Kiwi"
   },
   {
-    "name": "Boneboo",
-    "elements": {
-      "rage": 30
-    },
-    "description": "Spooky."
+    "elements": [
+      {
+        "duration": 30,
+        "effect": "rage"
+      }
+    ],
+    "description": "Spooky.",
+    "name": "Boneboo"
   },
   {
-    "name": "neonmelon",
-    "elements": {
-      "runboost25": 30,
-      "jumpboost25": 30
-    },
-    "description": "A slice of bubblegum flavoured neonmelon"
+    "elements": [
+      {
+        "duration": 30,
+        "magnitude": 25,
+        "effect": "runboost25"
+      },
+      {
+        "duration": 30,
+        "magnitude": 25,
+        "effect": "jumpboost25"
+      }
+    ],
+    "description": "A slice of bubblegum flavoured neonmelon",
+    "name": "neonmelon"
   },
   {
-    "name": "Pussplum",
-    "elements": {
-      "jumpboost25": 15,
-      "foodheal25": 60
-    },
-    "description": "Pussplum, something here that oozes!"
+    "elements": [
+      {
+        "duration": 15,
+        "magnitude": 25,
+        "effect": "jumpboost25"
+      },
+      {
+        "duration": 60,
+        "magnitude": 25,
+        "effect": "foodheal25"
+      }
+    ],
+    "description": "Pussplum, something here that oozes!",
+    "name": "Pussplum"
   },
   {
-    "name": "Pearlpeas",
-    "elements": {
-      "foodheal10": 60
-    },
-    "description": "Pearlpeas! I'll need to bite down hard."
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 10,
+        "effect": "foodheal10"
+      }
+    ],
+    "description": "Pearlpeas! I'll need to bite down hard.",
+    "name": "Pearlpeas"
   },
   {
-    "name": "Banana",
-    "elements": {
-      "energyregen192": 60
-    },
-    "description": "A genetically enhanced banana."
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 192,
+        "effect": "energyregen192"
+      }
+    ],
+    "description": "A genetically enhanced banana.",
+    "name": "Banana"
   },
   {
-    "name": "Toxictop",
-    "elements": {
-      "maxenergyboost60": 105,
-      "weakpoison": 15
-    },
-    "description": "A toxic looking fruit. Can looks be deceiving?"
+    "elements": [
+      {
+        "duration": 15,
+        "effect": "weakpoison"
+      },
+      {
+        "duration": 105,
+        "magnitude": 60,
+        "effect": "maxenergyboost60"
+      }
+    ],
+    "description": "A toxic looking fruit. Can looks be deceiving?",
+    "name": "Toxictop"
   },
   {
-    "name": "cacti",
-    "elements": {},
-    "description": "Spiky, succulent cacti."
+    "elements": [],
+    "description": "Spiky, succulent cacti.",
+    "name": "cacti"
   },
   {
-    "name": "Coralcreep",
-    "elements": {
-      "foodheal10": 60
-    },
-    "description": "The coralcreep fruit turns red when cooked, like a lobster."
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 10,
+        "effect": "foodheal10"
+      }
+    ],
+    "description": "The coralcreep fruit turns red when cooked, like a lobster.",
+    "name": "Coralcreep"
   },
   {
-    "name": "Alien fruit",
-    "elements": {
-      "lowgrav": 30
-    },
-    "description": "An alien fruit, very juicy."
+    "elements": [
+      {
+        "duration": 30,
+        "effect": "lowgrav"
+      }
+    ],
+    "description": "An alien fruit, very juicy.",
+    "name": "Alien fruit"
   },
   {
-    "name": "Wartweed",
-    "elements": {
-      "foodheal10": 60
-    },
-    "description": "Warty but not very weedy."
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 10,
+        "effect": "foodheal10"
+      }
+    ],
+    "description": "Warty but not very weedy.",
+    "name": "Wartweed"
   },
   {
-    "name": "Carrot",
-    "elements": {
-      "foodheal10": 60
-    },
-    "description": "Mmm crunchy."
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 10,
+        "effect": "foodheal10"
+      }
+    ],
+    "description": "Mmm crunchy.",
+    "name": "Carrot"
   },
   {
-    "name": "Oculemon",
-    "elements": {
-      "maxhealthboost20": 105
-    },
-    "description": "Sour but so worth it."
+    "elements": [
+      {
+        "duration": 105,
+        "magnitude": 20,
+        "effect": "maxhealthboost20"
+      }
+    ],
+    "description": "Sour but so worth it.",
+    "name": "Oculemon"
   },
   {
-    "name": "Eggshoot",
-    "elements": {
-      "foodheal10": 60
-    },
-    "description": "Eggshoot, soft-boiled in texture. Break it open to find a yolk."
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 10,
+        "effect": "foodheal10"
+      }
+    ],
+    "description": "Eggshoot, soft-boiled in texture. Break it open to find a yolk.",
+    "name": "Eggshoot"
   },
   {
-    "name": "Diodia",
-    "elements": {
-      "foodheal25": 60,
-      "maxenergyboost10": 90
-    },
-    "description": "Diodia, tastes like copper."
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 25,
+        "effect": "foodheal25"
+      },
+      {
+        "duration": 90,
+        "magnitude": 10,
+        "effect": "maxenergyboost10"
+      }
+    ],
+    "description": "Diodia, tastes like copper.",
+    "name": "Diodia"
   },
   {
-    "name": "Kelp",
-    "elements": {},
-    "description": "Squishy and slimey kelp."
+    "elements": [],
+    "description": "Squishy and slimey kelp.",
+    "name": "Kelp"
   },
   {
-    "name": "Orange",
-    "elements": {},
-    "description": "It's an orange."
+    "elements": [],
+    "description": "It's an orange.",
+    "name": "Orange"
   },
   {
-    "name": "Potato",
-    "elements": {
-      "foodheal50": 60,
-      "maxhealthboost10": 105
-    },
-    "description": "Po-ta-to"
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 50,
+        "effect": "foodheal50"
+      },
+      {
+        "duration": 105,
+        "magnitude": 10,
+        "effect": "maxhealthboost10"
+      }
+    ],
+    "description": "Po-ta-to",
+    "name": "Potato"
   },
   {
-    "name": "Corn",
-    "elements": {
-      "foodheal50": 60
-    },
-    "description": "Sweet and corny, good for digestion!"
+    "elements": [],
+    "description": "Protect your body from poisons.",
+    "name": "Antidote"
   },
   {
-    "name": "Green Apple",
-    "elements": {},
-    "description": "A tart green apple, ripe for baking or consuming with my face!"
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 50,
+        "effect": "foodheal50"
+      }
+    ],
+    "description": "Sweet and corny, good for digestion!",
+    "name": "Corn"
   },
   {
-    "name": "Chili",
-    "elements": {
-      "rage": 30,
-      "burning": 15
-    },
-    "description": "Super hot to humans, super, super hot to everyone else."
+    "elements": [],
+    "description": "A tart green apple, ripe for baking or consuming with my face!",
+    "name": "Green Apple"
   },
   {
-    "name": "Crystal Plant",
-    "elements": {},
-    "description": "A plant formed of crystal. Magical!"
+    "elements": [
+      {
+        "duration": 30,
+        "effect": "rage"
+      },
+      {
+        "duration": 15,
+        "effect": "burning"
+      }
+    ],
+    "description": "Super hot to humans, super, super hot to everyone else.",
+    "name": "Chili"
   },
   {
-    "name": "Mushroom",
-    "elements": {},
-    "description": "A mushroom. With a blueprint I could build something out of this.."
+    "elements": [],
+    "description": "A plant formed of crystal. Magical!",
+    "name": "Crystal Plant"
   },
   {
-    "name": "Pineapple",
-    "elements": {
-      "runboost25": 60
-    },
-    "description": "A tropical treat!"
+    "elements": [],
+    "description": "A mushroom. With a blueprint I could build something out of this..",
+    "name": "Mushroom"
   },
   {
-    "name": "Red Apple",
-    "elements": {
-      "foodheal25": 60
-    },
-    "description": "A ripe red apple."
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 25,
+        "effect": "runboost25"
+      }
+    ],
+    "description": "A tropical treat!",
+    "name": "Pineapple"
   },
   {
-    "name": "Dirturchin",
-    "elements": {
-      "foodheal10": 60
-    },
-    "description": "Kind of squidy and a bit tasteless."
+    "elements": [
+      {
+        "duration": 30,
+        "magnitude": 1,
+        "effect": "regeneration1"
+      }
+    ],
+    "description": "The restorative power of this water is incredible.",
+    "name": "Bottled Healing Water"
   },
   {
-    "name": "Boltbulb",
-    "elements": {
-      "foodheal10": 60
-    },
-    "description": "Boltbulb! Surprisingly soft."
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 25,
+        "effect": "foodheal25"
+      }
+    ],
+    "description": "A ripe red apple.",
+    "name": "Red Apple"
+  },
+  {
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 10,
+        "effect": "foodheal10"
+      }
+    ],
+    "description": "Kind of squidy and a bit tasteless.",
+    "name": "Dirturchin"
+  },
+  {
+    "elements": [
+      {
+        "duration": 60,
+        "magnitude": 10,
+        "effect": "foodheal10"
+      }
+    ],
+    "description": "Boltbulb! Surprisingly soft.",
+    "name": "Boltbulb"
   }
 ]
