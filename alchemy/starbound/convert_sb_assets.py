@@ -35,9 +35,9 @@ for crop_filename in listdir(assets_path):
             # ex. more potent/longer-lasting effects result from higher concentration of the corresponding element
             magnitude = effect_magnitude_re.match(effect['effect']).group(1)
             if magnitude:
-                effects.append({'effect': effect['effect'], 'magnitude': int(magnitude), 'duration': effect['duration']})
+                effects.append({'element': effect['effect'], 'concentration': int(magnitude), 'duration': effect['duration']})
             else:
-                effects.append({'effect': effect['effect'], 'duration': effect['duration']})
+                effects.append({'element': effect['effect'], 'duration': effect['duration']})
 
             if effect['effect'] not in effect_list:
                 effect_list.append(effect['effect'])
