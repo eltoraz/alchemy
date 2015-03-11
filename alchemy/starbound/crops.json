@@ -419,7 +419,7 @@
       {
         "element": "regeneration1",
         "duration": 30,
-        "concentration": 1
+        "concentration": 10
       }
     ]
   },

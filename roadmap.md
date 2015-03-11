@@ -48,3 +48,5 @@ The important thing is having a wide variety of mundane and more interesting eff
 - slow
 - haste
 - perhaps not a true invisibility but a chameleon-like camouflage effect
+- concentration of X element
+
