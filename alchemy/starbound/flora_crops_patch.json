@@ -1,0 +1,125 @@
+{
+  "Alien fruit": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Spirit", "concentration": 1.5}}
+  ],
+  "Antidote": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Clay", "concentration": 1.0}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Water", "concentration": 4.0}}
+  ],
+  "Banana": [
+    {"op": "replace", "path": "/elements/0/concentration", "value": 115.2}
+  ],
+  "Boltbulb": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Cloud", "concentration": 2.5}}
+  ],
+  "Boneboo": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Spirit", "concentration": 0.75}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Earth", "concentration": 2.5}}
+  ],
+  "Coralcreep": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Ice", "concentration": 3.5}}
+  ],
+  "Corn": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Earth", "concentration": 1.0}}
+  ],
+  "Crystal Plant": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Crystal", "concentration": 12.0}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Spirit", "concentration": 0.75}}
+  ],
+  "Currentcorn": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Cloud", "concentration": 4.0}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Storm", "concentration": 0.8}}
+  ],
+  "Diodia": [
+    {"op": "replace", "path": "/elements/0/concentration", "value": 0.4},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Storm", "concentration": 10.5}}
+  ],
+  "Dirturchin": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Earth", "concentration": 8.0}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Sand", "concentration": 1.3}}
+  ],
+  "Eggshoot": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Earth", "concentration": 2.25}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Aura", "concentration": 0.3}}
+  ],
+  "Feathercrown": [
+    {"op": "replace", "path": "/elements/1/concentration", "value": 4.5}
+  ],
+  "Grapes": [
+    {"op": "replace", "path": "/elements/0/concentration", "value": 0.25},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Water", "concentration": 6.0}}
+  ],
+  "Green Apple": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Water", "concentration": 15.0}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Sound", "concentration": 1.25}}
+  ],
+  "Kelp": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Water", "concentration": 4.0}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Sand", "concentration": 1.2}}
+  ],
+  "Mushroom": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Earth", "concentration": 9.0}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Clay", "concentration": 2.2}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Psi", "concentration": 0.1}}
+  ],
+  "Oculemon": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Spirit", "concentration": 0.75}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Acid", "concentration": 1.5}}
+  ],
+  "Orange": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Water", "concentration": 6.0}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Acid", "concentration": 0.75}}
+  ],
+  "Pineapple": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Water", "concentration": 6.0}}
+  ],
+  "Potato": [
+    {"op": "replace", "path": "/elements/1/concentration", "value": 5.5}
+  ],
+  "Pussplum": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Poison", "concentration": 4.0}}
+  ],
+  "Red Apple": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Sound", "concentration": 1.25}}
+  ],
+  "Reefpod": [
+    {"op": "replace", "path": "/elements/1/concentration", "value": 0.75},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Water", "concentration": 6.0}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Storm", "concentration": 2.5}}
+  ],
+  "Rice": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Earth", "concentration": 4.0}}
+  ],
+  "Sugar": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Air", "concentration": 3.0}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Earth", "concentration": 0.25}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Spirit", "concentration": 0.01}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Magnet", "concentration": 0.001}}
+  ],
+  "Toxictop": [
+    {"op": "replace", "path": "/elements/1/concentration", "value": 2.0},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Water", "concentration": 0.5}}
+  ],
+  "Wartweed": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Earth", "concentration": 10.5}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Clay", "concentration": 4.0}}
+  ],
+  "Wheat": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Earth", "concentration": 6.0}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Clay", "concentration": 2.0}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Spirit", "concentration": 0.4}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Psi", "concentration": 0.05}}
+  ],
+  "cacti": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Water", "concentration": 4.5}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Fire", "concentration": 2.75}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Sand", "concentration": 3.0}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Spirit", "concentration": 2.5}}
+  ],
+  "neonmelon": [
+    {"op": "add", "path": "/elements/-", "value": {"element": "Spirit", "concentration": 5.0}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Psi", "concentration": 1.0}},
+    {"op": "add", "path": "/elements/-", "value": {"element": "Magnet", "concentration": 0.4}}
+  ]
+}
+

@@ -5,3 +5,5 @@ Starbound assets not included. They're easy enough to extract yourself though us
 
 [Floraverse's flexible elemental magic system](http://floraverse.deviantart.com/journal/Elements-guide-425648924) fits better
 than Starbound's sci-fi setting.
+
+Requires jsonpatch
