@@ -44,15 +44,18 @@ for crop_filename in listdir(assets_path):
 
     crops.append(Reagent(name, desc, effects))
 
+def persist_crops(crops, file_path):
+    '''Save the given list of crops (Reagents) to the specified file as JSON'''
+    crops_file = open(file_path, 'w')
+    serialized_crops = []
+    for crop in sorted(crops, key=lambda crop: crop.name):
+        serialized_crops.append(crop.__dict__)
+    json.dump(serialized_crops, crops_file, indent=2, sort_keys=True)
+    crops_file.close()
+    
 # write the effects and crops to a file so they don't have to be rebuilt every time
 effects_file = open('alchemy/starbound/effects.json', 'w')
-json.dump(effect_list, effects_file, indent=2)
+json.dump(effect_list, effects_file, indent=2, sort_keys=True)
 effects_file.close()
-
-crops_file = open('alchemy/starbound/crops.json', 'w')
-serialized_crops = []
-for crop in crops:
-    serialized_crops.append(crop.__dict__)
-json.dump(serialized_crops, crops_file, indent=2)
-crops_file.close()
+persist_crops(crops, 'alchemy/starbound/crops.json')
 
