@@ -5,7 +5,7 @@ class Reagent:
     # Name: self-explanatory - string
     # Description: short flavor text - string
     # Elements: affinities/attributes of the reagent that determine properties - list of dict
-    #           {"element", "magnitude"}
+    #           [{"element": string, "concentration": number}]
     def __init__(self, name='', description='', elements=[]):
         self.name = name
         self.description = description
