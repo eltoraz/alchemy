@@ -54,8 +54,8 @@ def persist_crops(crops, file_path):
     crops_file.close()
     
 # write the effects and crops to a file so they don't have to be rebuilt every time
-effects_file = open('alchemy/starbound/effects.json', 'w')
+effects_file = open('alchemy/assets/starbound_effects.json', 'w')
 json.dump(effect_list, effects_file, indent=2, sort_keys=True)
 effects_file.close()
-persist_crops(crops, 'alchemy/starbound/crops.json')
+persist_crops(crops, 'alchemy/assets/starbound_crops.json')
 

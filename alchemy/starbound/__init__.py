@@ -6,11 +6,11 @@ import json
 from alchemy.reagent import Reagent
 
 # format of effects file: list of effects (strings)
-effects_file = open('alchemy/starbound/effects.json', 'r')
+effects_file = open('alchemy/assets/starbound_effects.json', 'r')
 effects = json.load(effects_file)
 
 # format of crops file: list of crops (dict containing name (string), description (string), effects (dict))
-crops_file = open('alchemy/starbound/crops.json', 'r')
+crops_file = open('alchemy/assets/starbound_crops.json', 'r')
 serialized_crops = json.load(crops_file)
 crops = []
 for crop in serialized_crops:
