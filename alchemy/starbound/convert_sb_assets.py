@@ -5,9 +5,10 @@ import re
 import json
 from os import listdir
 
+from alchemy.config import assets_path
 from alchemy.reagent import Reagent
 
-assets_path = 'alchemy/starbound/assets/'
+sb_assets_path = 'alchemy/starbound/assets/'
 crops = []
 effect_list = []
 
@@ -15,8 +16,8 @@ effect_list = []
 # though some don't specify magnitude (ex. 'thorns'), in which case the magnitude group in the regex will be ''
 effect_magnitude_re = re.compile('^\D+(\d*)')
 
-for crop_filename in listdir(assets_path):
-    crop_file = open(assets_path + crop_filename)
+for crop_filename in listdir(sb_assets_path):
+    crop_file = open(sb_assets_path + crop_filename)
     crop_json = json.load(crop_file)
     name = crop_json['shortdescription']
     desc = crop_json['description']
@@ -54,8 +55,8 @@ def persist_crops(crops, file_path):
     crops_file.close()
     
 # write the effects and crops to a file so they don't have to be rebuilt every time
-effects_file = open('alchemy/assets/starbound_effects.json', 'w')
+effects_file = open(assets_path+'starbound_effects.json', 'w')
 json.dump(effect_list, effects_file, indent=2, sort_keys=True)
 effects_file.close()
-persist_crops(crops, 'alchemy/assets/starbound_crops.json')
+persist_crops(crops, assets_path+'starbound_crops.json')
 

@@ -2,6 +2,7 @@ import json
 
 import jsonpatch
 
+from alchemy.config import assets_path
 from alchemy.reagent import Reagent
 from alchemy.starbound import crops as sb_crops
 from alchemy.starbound.convert_sb_assets import persist_crops
@@ -10,10 +11,10 @@ from alchemy.starbound.convert_sb_assets import persist_crops
 #       if so, just read from that
 
 crops = []
-conv_file = open('alchemy/assets/flora_conversion.json', 'r')
+conv_file = open(assets_path+'flora_conversion.json', 'r')
 conversions = json.load(conv_file)
 
-patch_file = open('alchemy/assets/flora_crops_patch.json', 'r')
+patch_file = open(assets_path+'flora_crops_patch.json', 'r')
 patches = json.load(patch_file)
 
 # go through and subsitute flora elements for SB effects, and add a few manually via the patch file
@@ -53,5 +54,5 @@ for crop in sb_crops:
 
 def persist_changes():
     '''Save the Starbound crops with element substitutions'''
-    persist_crops(crops, 'alchemy/assets/flora_crops.json')
+    persist_crops(crops, assets_path+'flora_crops.json')
 
