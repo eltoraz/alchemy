@@ -1,3 +1,6 @@
+import json
+
+from alchemy.config import assets_path
 from alchemy.reagent import Reagent
 
 class Potion:
@@ -16,4 +19,16 @@ class Potion:
         self.effects = effects
         self.recipe = recipe
         self.multiplier = multiplier
+
+    def from_dict(potion_dict):
+        '''Assuming the passed dict is the correct format w/ all the necessary fields'''
+        return Potion(potion_dict['name'], potion_dict['description'], potion_dict['effects'],
+                      potion_dict['recipe'], potion_dict.get('multiplier', 1))
+
+potions_file = open(assets_path+'potions.json', 'r')
+serialized_potions = json.load(potions_file)
+
+potions_list = []
+for potion in serialized_potions:
+    potions_list.append(Potion.from_dict(potion))
 
