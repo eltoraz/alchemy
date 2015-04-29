@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<data>
+    <potion name="healing potion">
+        <description>just your average vitality-restoring potion</description>
+        <effects>
+            <effect type="restore_health" magnitude="25" />
+        </effects>
+        <recipe>
+            <ingredient element="Water" min="10.0" max="12.0" />
+            <ingredient element="Spirit" min="0.1" max="1.0" />
+        </recipe>
+    </potion>
+    <potion name="haste salve">
+        <description>apply to ankles or equivalent</description>
+        <effects>
+            <effect type="haste" magnitude="2" />
+        </effects>
+        <recipe>
+            <ingredient element="Fire" min="5.0" max="10.0" />
+            <ingredient element="Storm" min="6.0" max="8.0" />
+        </recipe>
+    </potion>
+</data>
