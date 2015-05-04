@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<crops>
+    <crop name="banana">
+        <description>At the peak of ripeness. Sweet!</description>
+        <properties>
+            <element type="Aura" concentration="15.5"/>
+        </properties>
+    </crop>
+    <crop name="carrot">
+        <description>Has a nice crunch</description>
+        <properties>
+            <element type="Earth" concentration="4.0"/>
+            <element type="Water" concentration="6.0"/>
+        </properties>
+    </crop>
+    <crop name="chili">
+        <description>Chilis come in many shapes and sizes. This so happens to be one of the spicier variants!</description>
+        <properties>
+            <element type="Fire" concentration="15.0"/>
+            <element type="Lava" concentration="7.5"/>
+        </properties>
+    </crop>
+    <crop name="coffee beans">
+        <description>Packed with caffeine!</description>
+        <properties>
+            <element type="Aura" concentration="57.5"/>
+            <element type="Spirit" concentration="9.0"/>
+        </properties>
+    </crop>
+    <crop name="corn">
+        <description></description>
+        <properties>
+            <element type="Water" concentration="7.0"/>
+            <element type="Sound" concentration="1.0"/>
+        </properties>
+    </crop>
+    <crop name="grapes">
+        <description>A bunch of ripe, juicy grapes</description>
+        <properties>
+            <element type="Spirit" concentration="0.25"/>
+            <element type="Water" concentration="6.0"/>
+        </properties>
+    </crop>
+    <crop name="apple">
+        <description>Delightfully crisp!</description>
+        <properties>
+            <element type="Water" concentration="10.0"/>
+            <element type="Sound" concentration="1.25"/>
+        </properties>
+    </crop>
+    <crop name="kelp">
+        <description></description>
+        <properties>
+            <element type="Water" concentration="4.0"/>
+            <element type="Sand" concentration="1.2"/>
+        </properties>
+    </crop>
+    <crop name="kiwi">
+        <description></description>
+        <properties>
+            <element type="Air" concentration="15.0"/>
+        </properties>
+    </crop>
+    <crop name="mushroom">
+        <description></description>
+        <properties>
+            <element type="Earth" concentration="9.0"/>
+            <element type="Clay" concentration="2.2"/>
+            <element type="Psi" concentration="0.1"/>
+        </properties>
+    </crop>
+    <crop name="orange">
+        <description></description>
+        <properties>
+            <element type="Water" concentration="6.0"/>
+            <element type="Acid" concentration="0.75"/>
+        </properties>
+    </crop>
+    <crop name="pineapple">
+        <description></description>
+        <properties>
+            <element type="Storm" concentration="15.0"/>
+            <element type="Water" concentration="6.0"/>
+        </properties>
+    </crop>
+    <crop name="potato">
+        <description></description>
+        <properties>
+            <element type="Earth" concentration="10.5"/>
+            <element type="Water" concentration="2.5"/>
+        </properties>
+    </crop>
+    <crop name="rice">
+        <description></description>
+        <properties>
+            <element type="Water" concentration="3.0"/>
+            <element type="Earth" concentration="4.0"/>
+            <element type="Spirit" concentration="0.25"/>
+        </properties>
+    </crop>
+    <crop name="sugar">
+        <description></description>
+        <properties>
+            <element type="Air" concentration="3.0"/>
+            <element type="Earth" concentration="0.25"/>
+            <element type="Spirit" concentration="0.01"/>
+            <element type="Magnet" concentration="0.001"/>
+        </properties>
+    </crop>
+    <crop name="tomato">
+        <description></description>
+        <properties>
+            <element type="Water" concentration="6.0"/>
+            <element type="Acid" concentration="1.0"/>
+        </properties>
+    </crop>
+    <crop name="wheat">
+        <description></description>
+        <properties>
+            <element type="Earth" concentration="6.0"/>
+            <element type="Clay" concentration="2.0"/>
+            <element type="Spirit" concentration="0.4"/>
+            <element type="Psi" concentration="0.05"/>
+        </properties>
+    </crop><crop name="cactus">
+        <description></description>
+        <properties>
+            <element type="Water" concentration="4.5"/>
+            <element type="Fire" concentration="2.75"/>
+            <element type="Sand" concentration="3.0"/>
+            <element type="Spirit" concentration="2.5"/>
+        </properties>
+    </crop>
+</crops>

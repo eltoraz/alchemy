@@ -1,3 +1,6 @@
+'''
+A potion (generally speaking)
+'''
 import xml.etree.ElementTree as ET
 
 from alchemy.config import assets_path
@@ -24,20 +27,20 @@ class Potion:
         return Potion(potion_dict['name'], potion_dict['description'],
                       potion_dict['effects'], potion_dict['recipe'])
 
-potions_list = []
+potions = []
 
-xml_tree = ET.parse(assets_path+'potions.xml')
-xml_root = xml_tree.getroot()
-
-for child in xml_root:
+for node in ET.parse(assets_path + 'potions.xml').getroot():
     # parse each XML node and add to internal potions list
-    name = child.get('name', '')
-    desc = child.find('description').text
-    xml_effects = child.find('effects').findall('effect')
+    name = node.get('name', '')
+    desc = node.find('description').text
+
+    xml_effects = node.find('effects').findall('effect')
     effects = [{'effect': xml_eff.get('type'), 'magnitude': xml_eff.get('magnitude'), 'multiplier': xml_eff.get('mult', 1.0)}
                for xml_eff in xml_effects]
-    xml_recipe = child.find('recipe').findall('ingredient')
+
+    xml_recipe = node.find('recipe').findall('ingredient')
     recipe = [{'element': xml_ingr.get('element'), 'min': xml_ingr.get('min'), 'max': xml_ingr.get('max')}
               for xml_ingr in xml_recipe]
-    potions_list.append(Potion(name, desc, effects,recipe))
+
+    potions.append(Potion(name, desc, effects,recipe))
 

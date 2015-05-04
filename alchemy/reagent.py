@@ -1,6 +1,10 @@
 '''
 An alchemy ingredient
 '''
+import xml.etree.ElementTree as ET
+
+from alchemy.config import assets_path
+
 class Reagent:
     # Name: self-explanatory - string
     # Description: short flavor text - string
@@ -16,4 +20,16 @@ class Reagent:
 
     def __str__(self):
         return __repr__(self)
+
+crops = []
+
+for node in ET.parse(assets_path + 'crops.xml').getroot():
+    name = node.get('name', '')
+    desc = node.find('description').text
+
+    xml_elements = node.find('properties').findall('element')
+    props = [{'element': xml_ele.get('type'), 'concentration': xml_ele.get('concentration')}
+             for xml_ele in xml_elements]
+
+    crops.append(Reagent(name, desc, props))
 
