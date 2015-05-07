@@ -35,6 +35,9 @@ for node in ET.parse(assets_path + 'potions.xml').getroot():
     desc = node.find('description').text
 
     xml_effects = node.find('effects').findall('effect')
+    # TODO: write potion/reagent XML schema, then rewrite potion/reagent loading code to use elements not attributes
+    #       (since now the magnitude/min/max/etc. are strings and I'd rather not blindly cast them)
+    #effects = [{'effect': xml_eff.find('type').text
     effects = [{'effect': xml_eff.get('type'), 'magnitude': xml_eff.get('magnitude'), 'multiplier': xml_eff.get('mult', 1.0)}
                for xml_eff in xml_effects]
 

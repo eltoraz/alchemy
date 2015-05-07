@@ -62,7 +62,7 @@
         </properties>
     </crop>
     <crop name="mushroom">
-        <description></description>
+        <description>This one's inert. I think...</description>
         <properties>
             <element type="Earth" concentration="9.0"/>
             <element type="Clay" concentration="2.2"/>
