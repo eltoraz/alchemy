@@ -19,7 +19,7 @@ class Reagent:
         return {'name': self.name, 'description': self.description, 'elements': self.elements}.__str__()
 
     def __str__(self):
-        return __repr__(self)
+        return self.__repr__()
 
 crops = []
 
