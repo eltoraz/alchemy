@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<potions>
+<potions xmlns="https://eltoraz.github.io/alchemy"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://eltoraz.github.io/alchemy potions.xsd">
     <potion name="healing potion">
         <description>just your average vitality-restoring potion</description>
         <effects>
