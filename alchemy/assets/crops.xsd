@@ -1,5 +1,5 @@
 <xs:schema elementFormDefault="qualified"
-           xmlns="https://eltoraz.github.io/alchemy crops.xsd"
+           xmlns="https://eltoraz.github.io/alchemy"
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="crops">
         <xs:complexType>
