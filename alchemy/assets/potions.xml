@@ -7,7 +7,7 @@
         <effects>
             <effect>
                 <type>restore_health</type>
-                <magnitude>25</magnitude>
+                <magnitude>25.0</magnitude>
             </effect>
         </effects>
         <recipe>
@@ -32,7 +32,7 @@
         <effects>
             <effect>
                 <type>haste</type>
-                <magnitude>2</magnitude>
+                <magnitude>2.0</magnitude>
             </effect>
         </effects>
         <recipe>

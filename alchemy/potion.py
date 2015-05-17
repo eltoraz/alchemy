@@ -4,6 +4,7 @@ A potion (generally speaking)
 import xml.etree.ElementTree as ET
 
 from alchemy.config import assets_path
+from alchemy.config import xml_namespace as ns
 from alchemy.reagent import Reagent
 
 class Potion:
@@ -29,21 +30,27 @@ class Potion:
 
 potions = []
 
+# As in reagent.py, the xmlns: prefix is required (the alternative is writing out the full namespace)
 for node in ET.parse(assets_path + 'potions.xml').getroot():
     # parse each XML node and add to internal potions list
-    name = node.get('name', '')
-    desc = node.find('description').text
+    name = node.get('name', 'dummy')
+    desc = node.find('xmlns:description', ns).text
 
-    xml_effects = node.find('effects').findall('effect')
-    # TODO: write potion/reagent XML schema, then rewrite potion/reagent loading code to use elements not attributes
-    #       (since now the magnitude/min/max/etc. are strings and I'd rather not blindly cast them)
-    #effects = [{'effect': xml_eff.find('type').text
-    effects = [{'effect': xml_eff.get('type'), 'magnitude': xml_eff.get('magnitude'), 'multiplier': xml_eff.get('mult', 1.0)}
+    # note: effects don't necessarily have a multiplier defined
+    xml_effects = node.find('xmlns:effects', ns).findall('xmlns:effect', ns)
+    effects = [{'effect': xml_eff.find('xmlns:type', ns).text,
+                'magnitude': xml_eff.find('xmlns:magnitude', ns).text,
+                'multiplier': xml_eff.find('xmlns:mult', ns).text if xml_eff.find('xmlns:mult', ns) is not None else 1.0}
                for xml_eff in xml_effects]
 
-    xml_recipe = node.find('recipe').findall('ingredient')
-    recipe = [{'element': xml_ingr.get('element'), 'min': xml_ingr.get('min'), 'max': xml_ingr.get('max')}
-              for xml_ingr in xml_recipe]
+    # TODO: expand for unique ingredients (right now this only works with recipes defined soley on constituent elements)
+    xml_recipe = node.find('xmlns:recipe', ns).findall('xmlns:ingredient', ns)
+    recipe = []
+    for xml_ingr in xml_recipe:
+        xml_ele = xml_ingr.find('xmlns:element', ns)
+        recipe.append({'element': xml_ele.find('xmlns:type', ns).text,
+                    'min': xml_ele.find('xmlns:min', ns).text,
+                    'max': xml_ele.find('xmlns:max', ns).text})
 
     potions.append(Potion(name, desc, effects,recipe))
 
