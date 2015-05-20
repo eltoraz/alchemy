@@ -15,8 +15,8 @@
                                             <xs:complexType>
                                                 <xs:simpleContent>
                                                     <xs:extension base="xs:string">
-                                                        <xs:attribute type="xs:string" name="type" use="optional"/>
-                                                        <xs:attribute type="xs:float" name="concentration" use="optional"/>
+                                                        <xs:attribute type="xs:string" name="type" use="required"/>
+                                                        <xs:attribute type="xs:float" name="concentration" use="required"/>
                                                     </xs:extension>
                                                 </xs:simpleContent>
                                             </xs:complexType>
@@ -25,7 +25,7 @@
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
-                        <xs:attribute type="xs:string" name="name" use="optional"/>
+                        <xs:attribute type="xs:string" name="name" use="required"/>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>

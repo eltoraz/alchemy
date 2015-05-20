@@ -5,51 +5,21 @@
     <potion name="healing potion">
         <description>just your average vitality-restoring potion</description>
         <effects>
-            <effect>
-                <type>restore_health</type>
-                <magnitude>25.0</magnitude>
-            </effect>
+            <effect type="restore_health" magnitude="25.0"/>
         </effects>
         <recipe>
-            <ingredient>
-                <element>
-                    <type>Water</type>
-                    <min>10.0</min>
-                    <max>12.0</max>
-                </element>
-            </ingredient>
-            <ingredient>
-                <element>
-                    <type>Spirit</type>
-                    <min>0.1</min>
-                    <max>1.0</max>
-                </element>
-            </ingredient>
+            <element type="Water" min="10.0" max="12.0"/>
+            <element type="Spirit" min="0.1" max="1.0"/>
         </recipe>
     </potion>
     <potion name="haste salve">
         <description>apply to ankles or equivalent</description>
         <effects>
-            <effect>
-                <type>haste</type>
-                <magnitude>2.0</magnitude>
-            </effect>
+            <effect type="haste" magnitude="2.0"/>
         </effects>
         <recipe>
-            <ingredient>
-                <element>
-                    <type>Fire</type>
-                    <min>5.0</min>
-                    <max>10.0</max>
-                </element>
-            </ingredient>
-            <ingredient>
-                <element>
-                    <type>Storm</type>
-                    <min>6.0</min>
-                    <max>8.0</max>
-                </element>
-            </ingredient>
+            <element type="Fire" min="5.0" max="10.0"/>
+            <element type="Storm" min="6.0" max="8.0"/>
         </recipe>
     </potion>
 </potions>

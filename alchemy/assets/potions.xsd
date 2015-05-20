@@ -13,10 +13,13 @@
                                     <xs:sequence>
                                         <xs:element name="effect">
                                             <xs:complexType>
-                                                <xs:sequence>
-                                                    <xs:element type="xs:string" name="type"/>
-                                                    <xs:element type="xs:float" name="magnitude"/>
-                                                </xs:sequence>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute type="xs:string" name="type" use="required"/>
+                                                        <xs:attribute type="xs:float" name="magnitude" use="optional"/>
+                                                        <sd:attribute type="xs:float" name="mult" use="optional"/>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
@@ -25,19 +28,15 @@
                             <xs:element name="recipe">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="ingredient" maxOccurs="unbounded" minOccurs="0">
+                                        <xs:element name="element" maxOccurs="unbounded" minOccurs="0">
                                             <xs:complexType>
-                                                <xs:sequence>
-                                                    <xs:element name="element">
-                                                        <xs:complexType>
-                                                            <xs:sequence>
-                                                                <xs:element type="xs:string" name="type"/>
-                                                                <xs:element type="xs:float" name="min"/>
-                                                                <xs:element type="xs:float" name="max"/>
-                                                            </xs:sequence>
-                                                        </xs:complexType>
-                                                    </xs:element>
-                                                </xs:sequence>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute type="xs:string" name="type" use="required"/>
+                                                        <xs:attribute type="xs:float" name="min" use="optional"/>
+                                                        <xs:attribute type="xs:float" name="max" use="optional"/>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
