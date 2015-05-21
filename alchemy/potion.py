@@ -17,6 +17,13 @@ class Potion:
         self.effects = effects
         self.recipe = recipe
 
+    def __repr__(self):
+        return {'name': self.name, 'description': self.description,
+                'effects': self.effects, 'recipe': self.recipe}.__str__()
+
+    def __str__(self):
+        return self.__repr__()
+
     def from_dict(potion_dict):
         '''Assuming the passed dict is the correct format w/ all the necessary fields'''
         return Potion(potion_dict['name'], potion_dict['description'],
