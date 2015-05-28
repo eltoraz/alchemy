@@ -18,11 +18,15 @@ class Cauldron:
             for ele in ingr.elements:
                 self.elements[ele['element']] = self.elements.get(ele['element'], 0.0) + ele['concentration']
 
-    # TODO: disallow negative `amount` or think of a good reason to allow distilling to increase element instead
     def distill(self, element, amount):
         '''remove `amount` of `element` from the cauldron
-        return the actual amount removed'''
+        NOTE: amount must be nonnegative
+        return the actual amount removed
+        if the element is not present in the cauldron, the elements dict is unaffected'''
+        assert amount >= 0, 'Distilling cannot increase the concentration of an element!'
+
         current_amount = self.elements.get(element, 0.0)
+
         if current_amount <= amount:
             return self.elements.pop(element, current_amount)
         else:
