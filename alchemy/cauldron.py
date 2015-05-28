@@ -1,8 +1,7 @@
 '''
 Do the actual mixing - even if the process doesn't use an actual cauldron
 '''
-from alchemy.reagent import Reagent, crops
-from alchemy.potion import potions
+import alchemy.potion
 
 class Cauldron:
     '''An in-progress concoction'''
@@ -34,5 +33,18 @@ class Cauldron:
             return amount
 
     def brew(self):
-        '''combine the elements in the cauldron into a matching potion'''
-        pass
+        '''attempt to combine the elements in the cauldron into a matching potion
+        if successful, empty the cauldron and return the result
+        otherwise, just print a failure message'''
+        result = alchemy.potion.get_match(self.elements)
+        if result is not None:
+            ele_list = list(self.elements.keys())
+            print('Brew successful! Created ', result.name, ' from ', sep='', end='')
+            for ele in ele_list[0:-1]:
+                print(self.elements[ele], ' units of ', ele, ', ', sep='', end='')
+            print('and ', self.elements[ele_list[-1]], ' units of ', ele_list[-1], '.', sep='')
+            self.elements = {}
+        else:
+            print('Oops, that\'s not a winning combination! Better try again...')
+
+        return result

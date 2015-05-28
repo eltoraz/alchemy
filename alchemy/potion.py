@@ -33,3 +33,28 @@ class Potion:
 import alchemy.xml
 
 potions = alchemy.xml.load_potions_from_xml('potions.xml')
+
+# TODO: maybe check whether the potion requirements are a subset of what's in the cauldron, but make
+#       sure there isn't any ambiguity (from multiple potions with similar recipes)
+# TODO: find a more efficient way to find matches
+# TODO: adapt for special properties/ingredient requirements in recipe once that's implemented
+def get_match(elements):
+    '''return one potion from the list that matches the provided ingredients
+    specifically, the types of elements must match exactly, with concentrations between the limits in the recipe
+    if no match, return None'''
+    elements_set = set(elements.keys())
+    for potion in potions:
+        # first step: check whether the required elements (and no additional ones) are present
+        # converting min/max to a tuple in this dict for use later
+        recipe_elements = {ele['element']: (ele['min'], ele['max']) for ele in potion.recipe}
+        if elements_set != set(recipe_elements.keys()):
+            continue
+
+        # if the ingredients match the recipe, just make sure they're between the specified min & max
+        if all([elements[ele] >= recipe_elements[ele][0] and
+                elements[ele] <= recipe_elements[ele][1] for
+                ele in elements_set]):
+            return potion
+
+    # fallback (no match)
+    return None
