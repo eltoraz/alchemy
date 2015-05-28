@@ -30,9 +30,10 @@ def load_reagents_from_xml(filename):
         name = node.get('name', 'dummy')
         desc = node.find('xmlns:description', ns).text
 
-        # The xmlns prefix (not present in the actual XML) is needed when naming XML elements due to the way the etree library handles namespaces
+        # The xmlns prefix (not present in the actual XML) is needed when naming XML elements due to the way the
+        # etree library handles namespaces
         xml_elements = node.find('xmlns:properties', ns).findall('xmlns:element', ns)
-        props = [{'element': xml_ele.get('type'),
+        props = [{'element': xml_ele.get('element'),
                 'concentration': literal_eval(xml_ele.get('concentration'))}
                 for xml_ele in xml_elements]
 
