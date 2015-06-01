@@ -8,7 +8,7 @@ config = {
     'author_email': 'eltoraz@outlook.com'
     'url': 'https://github.com/eltoraz/alchemy',
     'packages': find_packages(),
-    'install_requires': []
+    'install_requires': ['nose']
 }
 
 setup(**config)
