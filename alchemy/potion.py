@@ -10,7 +10,8 @@ class Potion:
     # Recipe: list of elements (w/ concentration thresholds) req. to craft potion - list of dict
     #         [{"element": name, "min": number, "max": number}]
     #         TODO: support potions that require specific ingredients in addition to certain elements
-    # TODO: may want a more refined way to reflect potion quality than a multiplier on each effect
+    # TODO: maybe get rid of multiplier entirely and eventually have the potion strength be determined
+    #       by the brewing function
     def __init__(self, name, description, effects, recipe):
         self.name = name
         self.description = description
@@ -24,22 +25,17 @@ class Potion:
     def __str__(self):
         return self.__repr__()
 
-    def from_dict(potion_dict):
-        '''Assuming the passed dict is the correct format w/ all the necessary fields'''
-        return Potion(potion_dict['name'], potion_dict['description'],
-                      potion_dict['effects'], potion_dict['recipe'])
-
-# note: alchemy.xml needs the Potion class to be defined before it can be imported
-import alchemy.xml
-
-potions = alchemy.xml.load_potions_from_xml('potions.xml')
+#def potion_from_dict(potion_dict):
+#    '''Assuming the passed dict is the correct format w/ all the necessary fields'''
+#    return Potion(potion_dict['name'], potion_dict['description'],
+#                    potion_dict['effects'], potion_dict['recipe'])
 
 # TODO: maybe check whether the potion requirements are a subset of what's in the cauldron, but make
 #       sure there isn't any ambiguity (from multiple potions with similar recipes)
 # TODO: find a more efficient way to find matches
 # TODO: adapt for special properties/ingredient requirements in recipe once that's implemented
 def get_match(elements):
-    '''return one potion from the list that matches the provided ingredients
+    '''return one potion from the list that matches the provided ingredients (dict mapping elements to concentration)
     specifically, the types of elements must match exactly, with concentrations between the limits in the recipe
     if no match, return None'''
     elements_set = set(elements.keys())
@@ -58,3 +54,10 @@ def get_match(elements):
 
     # fallback (no match)
     return None
+
+# ------------------------------------------------------
+# Load potions from XML
+# note: alchemy.xml module needs the Potion class to be defined before it can be imported
+import alchemy.xml
+
+potions = alchemy.xml.load_potions_from_xml('potions.xml')

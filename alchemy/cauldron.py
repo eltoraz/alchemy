@@ -24,7 +24,7 @@ class Cauldron:
         if the element is not present in the cauldron, the elements dict is unaffected'''
         assert amount >= 0, 'Distilling cannot increase the concentration of an element!'
 
-        current_amount = self.elements.get(element, 0.0)
+        current_amount = self.elements.get(element, 0)
 
         if current_amount <= amount:
             return self.elements.pop(element, current_amount)
