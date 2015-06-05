@@ -1,7 +1,7 @@
 '''
 Tests for the cauldron
 '''
-from nose.tools import eq_, raises
+from nose.tools import eq_, assert_raises
 
 from alchemy.reagent import Reagent
 from alchemy.potion import Potion
@@ -51,11 +51,8 @@ def test_distill():
     result = test_cauldron.distill('Water', 1.0)
     eq_(result, 0)
     eq_(test_cauldron.elements, {'Spirit': 0.5})
-    
-@raises(AssertionError)
-def test_distill_increase_element():
-    test_cauldron = Cauldron([test_spirit])
-    test_cauldron.distill('Water', -11.0)
+
+    assert_raises(AssertionError, Cauldron([test_spirit]).distill, 'Water', -11.0)
 
 def test_brew():
     # matches a recipe
