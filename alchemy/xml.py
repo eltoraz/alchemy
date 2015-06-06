@@ -21,7 +21,7 @@ def parse_xml_numbers(eff_dict):
       result (dict): original dict with numeric values converted from str -> float
     """
     result = eff_dict
-    number_attribs = ['magnitude', 'mult', 'min', 'max']
+    number_attribs = ['magnitude', 'min', 'max']
 
     for key in eff_dict:
         if key in number_attribs:
@@ -77,7 +77,6 @@ def load_potions_from_xml(filename):
         cat_text = node.find('xmlns:category', ns).text
         cat = PotionType[cat_text]
 
-        # note: effects don't necessarily have a multiplier defined
         xml_effects = node.find('xmlns:effects', ns).findall('xmlns:effect', ns)
         effects = [parse_xml_numbers(xml_eff.attrib) for xml_eff in xml_effects]
 
