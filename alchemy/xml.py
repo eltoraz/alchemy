@@ -1,6 +1,6 @@
-'''
-Load data from XML
-'''
+"""
+XML-related functions, primarily for loading assets
+"""
 from ast import literal_eval
 import xml.etree.ElementTree as ET
 
@@ -11,6 +11,14 @@ from alchemy.config import xml_namespace as ns
 # Currently supports: potion.effect, potion.recipe
 # TODO: catch ValueError raised if the XML attrib is malformed/invalid
 def parse_xml_numbers(eff_dict):
+    """Parse numbers from certain strings obtained from reading in an XML file
+
+    Arguments:
+      eff_dict (dict): dict with some numeric values, currently represented as str
+
+    Returns:
+      result (dict): original dict with numeric values converted from str -> float
+    """
     result = eff_dict
     number_attribs = ['magnitude', 'mult', 'min', 'max']
 
@@ -22,7 +30,14 @@ def parse_xml_numbers(eff_dict):
 
 # TODO: accept multiple filenames to parse in one function call for both loading functions?
 def load_reagents_from_xml(filename):
-    '''Build a list of reagents fron the specified (XML) file'''
+    """Build a list of reagents fron the specified (XML) file
+
+    Arguments:
+      filename (str): name of the XML file to read from
+
+    Returns:
+      reagents (list of Reagent): reagents parsed from the XML file
+    """
     from alchemy.reagent import Reagent
     reagents = []
     
@@ -42,7 +57,14 @@ def load_reagents_from_xml(filename):
     return reagents
 
 def load_potions_from_xml(filename):
-    '''Build a list of potions from the specified (XML) file'''
+    """Build a list of potions from the specified (XML) file
+
+    Arguments:
+      filename (str): name of the XML file to read from
+
+    Returns:
+      potions (list of Potion): potions parsed from the XML file
+    """
     from alchemy.potion import Potion
     potions = []
     
