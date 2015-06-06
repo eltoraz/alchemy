@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 
 from alchemy.config import assets_path
 from alchemy.config import xml_namespace as ns
+from alchemy.potion import PotionType
 
 # XML attributes always parse as strings with this XML library, so convert numbers present to a more convenient format
 # Currently supports: potion.effect, potion.recipe
@@ -73,6 +74,9 @@ def load_potions_from_xml(filename):
         name = node.get('name', 'dummy')
         desc = node.find('xmlns:description', ns).text
 
+        cat_text = node.find('xmlns:category', ns).text
+        cat = PotionType[cat_text]
+
         # note: effects don't necessarily have a multiplier defined
         xml_effects = node.find('xmlns:effects', ns).findall('xmlns:effect', ns)
         effects = [parse_xml_numbers(xml_eff.attrib) for xml_eff in xml_effects]
@@ -82,6 +86,6 @@ def load_potions_from_xml(filename):
         recipe_ele = [parse_xml_numbers(xml_ele.attrib) for xml_ele in xml_recipe_ele]
         recipe = recipe_ele
 
-        potions.append(Potion(name, desc, effects, recipe))
+        potions.append(Potion(name, cat, desc, effects, recipe))
         
     return potions

@@ -1,6 +1,15 @@
 """
 A potion (generally speaking), along with related functions
 """
+from enum import Enum
+
+class PotionType(Enum):
+    """Various types of potion available
+    """
+    potion = 1
+    salve = 2
+    volatile = 3
+    vapor = 4
 
 # TODO: consider a separate class for effects instead of passing dicts around
 # TODO: support recipes that call for specific ingredients alongside element requirements
@@ -9,20 +18,32 @@ class Potion:
     
     Arguments:
       name (str): display name
-      description (str): flavor text (preferably more than just a list of effects
+      cat (PotionType): category the potion falls under
+      desc (str): flavor text
       effects (list of dict): positive/negative effects (incl. magnitudes where appropriate)
                               {"effect": string, "magnitude": number}
       recipe (list of dict): elements (w/ concentration thresholds) required to craft potion
                              {"element": name, "min": number, "max": number}
+
+    Attributes:
+      name (str): display name
+      category (PotionType): category the potion falls under
+      description (str): flavor text (preferably more than just a list of effects)
+      effects (list of dict): effects of applying the potion
+                              {"effect": string, "magnitude": number}
+      recipe (list of dict): ingredients needed to craft potion (either specific ones or
+                             required elements w/ concentration thresholds)
+                             {"element": name, "min": number, "max": number}
     """
-    def __init__(self, name, description, effects, recipe):
+    def __init__(self, name, cat, desc, effects, recipe):
         self.name = name
-        self.description = description
+        self.category = cat
+        self.description = desc
         self.effects = effects
         self.recipe = recipe
 
     def __repr__(self):
-        return {'name': self.name, 'description': self.description,
+        return {'name': self.name, 'type': self.category.name, 'description': self.description,
                 'effects': self.effects, 'recipe': self.recipe}.__str__()
 
     def __str__(self):
