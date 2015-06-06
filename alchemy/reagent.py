@@ -1,11 +1,15 @@
-'''
+"""
 An alchemy ingredient
-'''
+"""
 class Reagent:
-    # Name: self-explanatory - string
-    # Description: short flavor text - string
-    # Elements: affinities/attributes of the reagent that determine properties - list of dict
-    #           [{"element": string, "concentration": number}]
+    """An item/object/etc. that can be used in an alchemical concoction
+
+    Arguments:
+      name (str): display name
+      description (str): short flavor text
+      elements (list of dict): affinities of the reagent
+                               [{"element": string, "concentration": number}]
+    """
     def __init__(self, name, description, elements):
         self.name = name
         self.description = description

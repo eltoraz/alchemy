@@ -1,17 +1,20 @@
-'''
-A potion (generally speaking)
-'''
+"""
+A potion (generally speaking), along with related functions
+"""
+
+# TODO: consider a separate class for effects instead of passing dicts around
+# TODO: support recipes that call for specific ingredients alongside element requirements
 class Potion:
-    # Name: short name (e.g., for display in inventory) - string
-    # Description: flavor text (preferably don't just list effects) - string
-    # Effects: list of positive/negative effects (incl. magnitudes where appropriate) - list of dict
-    #          [{"effect": string, "magnitude": number, "multiplier": number}]
-    #          TODO: separate class for effects may be useful later to 
-    # Recipe: list of elements (w/ concentration thresholds) req. to craft potion - list of dict
-    #         [{"element": name, "min": number, "max": number}]
-    #         TODO: support potions that require specific ingredients in addition to certain elements
-    # TODO: maybe get rid of multiplier entirely and eventually have the potion strength be determined
-    #       by the brewing function
+    """A potion
+    
+    Arguments:
+      name (str): display name
+      description (str): flavor text (preferably more than just a list of effects
+      effects (list of dict): positive/negative effects (incl. magnitudes where appropriate)
+                              {"effect": string, "magnitude": number}
+      recipe (list of dict): elements (w/ concentration thresholds) required to craft potion
+                             {"element": name, "min": number, "max": number}
+    """
     def __init__(self, name, description, effects, recipe):
         self.name = name
         self.description = description
@@ -25,19 +28,20 @@ class Potion:
     def __str__(self):
         return self.__repr__()
 
-#def potion_from_dict(potion_dict):
-#    '''Assuming the passed dict is the correct format w/ all the necessary fields'''
-#    return Potion(potion_dict['name'], potion_dict['description'],
-#                    potion_dict['effects'], potion_dict['recipe'])
-
 # TODO: maybe check whether the potion requirements are a subset of what's in the cauldron, but make
 #       sure there isn't any ambiguity (from multiple potions with similar recipes)
 # TODO: find a more efficient way to find matches
 # TODO: adapt for special properties/ingredient requirements in recipe once that's implemented
 def get_match(elements):
-    '''return one potion from the list that matches the provided ingredients (dict mapping elements to concentration)
-    specifically, the types of elements must match exactly, with concentrations between the limits in the recipe
-    if no match, return None'''
+    """Return the first potion from the potions list that matches the provided ingredients.
+
+    Arguments:
+      elements (dict): mapping of elements -> concentrations to test against potion recipes
+
+    Returns:
+      potion (Potion): potion whose recipe matches the ingredients, OR
+      None: if the elements/concentrations don't match a recipe
+    """
     elements_set = set(elements.keys())
     for potion in potions:
         # first step: check whether the required elements (and no additional ones) are present
