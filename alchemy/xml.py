@@ -43,7 +43,7 @@ def load_reagents_from_xml(filename):
     
     for node in ET.parse(assets_path + filename).getroot():
         name = node.get('name', 'dummy')
-        desc = node.find('xmlns:description', ns).text
+        desc = node.find('xmlns:description', ns).text.strip()
 
         # The xmlns prefix (not present in the actual XML) is needed when naming XML elements due to the way the
         # etree library handles namespaces
@@ -69,13 +69,13 @@ def load_potions_from_xml(filename):
     for node in ET.parse(assets_path + filename).getroot():
         # parse each XML node and add to internal potions list
         name = node.get('name', 'dummy')
-        desc = node.find('xmlns:description', ns).text
+        desc = node.find('xmlns:description', ns).text.strip()
 
-        type_text = node.find('xmlns:type', ns).text
+        type_text = node.find('xmlns:type', ns).text.strip()
         main_type = PotionType[type_text]
 
         xml_subtype = node.find('xmlns:subtype', ns)
-        subtype = PotionType[xml_subtype.text] if xml_subtype is not None else None
+        subtype = PotionType[xml_subtype.text.strip()] if xml_subtype is not None else None
 
         xml_effects = node.find('xmlns:effects', ns).findall('xmlns:effect', ns)
         effects = [parse_xml_numbers(xml_eff.attrib) for xml_eff in xml_effects]
