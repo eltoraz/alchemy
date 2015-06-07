@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://eltoraz.github.io/alchemy potions.xsd">
     <potion name="healing potion">
-        <category>potion</category>
+        <type>potion</type>
         <description>just your average vitality-restoring potion</description>
         <effects>
             <effect effect="restore_health" magnitude="25.0"/>
@@ -14,7 +14,7 @@
         </recipe>
     </potion>
     <potion name="haste salve">
-        <category>salve</category>
+        <type>salve</type>
         <description>apply to ankles or equivalent</description>
         <effects>
             <effect effect="haste" magnitude="2.0"/>

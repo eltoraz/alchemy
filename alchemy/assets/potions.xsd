@@ -7,6 +7,8 @@
                 <xs:element name="potion" maxOccurs="unbounded" minOccurs="0">
                     <xs:complexType>
                         <xs:sequence>
+                            <xs:element type="xs:string" name="type" use="required"/>
+                            <xs:element type="xs:string" name="subtype" use="optional"/>
                             <xs:element type="xs:string" name="description"/>
                             <xs:element name="effects">
                                 <xs:complexType>

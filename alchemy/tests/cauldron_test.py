@@ -4,12 +4,12 @@ Tests for the cauldron
 from nose.tools import eq_, assert_raises
 
 from alchemy.reagent import Reagent
-from alchemy.potion import Potion
+from alchemy.potion import PotionType, Potion
 from alchemy.cauldron import Cauldron
 
 test_water = Reagent('testwater', 'water reagent for testing', [{'element': 'Water', 'concentration': 11.0}])
 test_spirit = Reagent('testspirit', 'spirit reagent for testing', [{'element': 'Spirit', 'concentration': 0.5}])
-test_healpot = Potion('healing potion', 'just your average vitality-restoring potion',
+test_healpot = Potion('healing potion', PotionType['potion'], 'just your average vitality-restoring potion',
                       [{'effect': 'restore_health', 'magnitude': 25.0}],
                       [{'element': 'Water', 'min': 10.0, 'max': 12.0}, {'element': 'Spirit', 'min': 0.1, 'max': 1.0}])
 
@@ -59,6 +59,8 @@ def test_brew():
     test_cauldron = Cauldron([test_water, test_spirit])
     result = test_cauldron.brew()
     eq_(result.name, test_healpot.name)
+    eq_(result.main_type, test_healpot.main_type)
+    eq_(result.subtype, test_healpot.subtype)
     eq_(result.description, test_healpot.description)
     eq_(result.effects, test_healpot.effects)
     eq_(result.recipe, test_healpot.recipe)

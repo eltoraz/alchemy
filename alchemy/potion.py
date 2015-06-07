@@ -4,12 +4,19 @@ A potion (generally speaking), along with related functions
 from enum import Enum
 
 class PotionType(Enum):
-    """Various types of potion available
+    """All the possible classifications for potions
+
+    Every potion needs a main type (id < 10), but some may have subtypes (id >= 10)
+    for easier categorization. The main type relates to the potion's physical state or
+    application method, while the subtype provides more context (like whether it's
+    malignant or otherwise unique).
     """
     potion = 1
     salve = 2
     volatile = 3
     vapor = 4
+
+    poison = 10
 
 # TODO: consider a separate class for effects instead of passing dicts around
 # TODO: support recipes that call for specific ingredients alongside element requirements
@@ -18,33 +25,42 @@ class Potion:
     
     Arguments:
       name (str): display name
-      cat (PotionType): category the potion falls under
+      main_type (PotionType): category the potion falls under
       desc (str): flavor text
       effects (list of dict): positive/negative effects (incl. magnitudes where appropriate)
                               {"effect": string, "magnitude": number}
       recipe (list of dict): elements (w/ concentration thresholds) required to craft potion
                              {"element": name, "min": number, "max": number}
+      subtype (PotionType, optional): additional classification for the potion; defaults to
+                                      None if not specified
 
     Attributes:
       name (str): display name
-      category (PotionType): category the potion falls under
+      main_type (PotionType): category the potion falls under
       description (str): flavor text (preferably more than just a list of effects)
       effects (list of dict): effects of applying the potion
                               {"effect": string, "magnitude": number}
       recipe (list of dict): ingredients needed to craft potion (either specific ones or
                              required elements w/ concentration thresholds)
                              {"element": name, "min": number, "max": number}
+      subtype (PotionType): additional (optional) classification for the potion; None if
+                            it doesn't have one
     """
-    def __init__(self, name, cat, desc, effects, recipe):
+    def __init__(self, name, main_type, desc, effects, recipe, subtype=None):
         self.name = name
-        self.category = cat
+        self.main_type = main_type
         self.description = desc
         self.effects = effects
         self.recipe = recipe
+        self.subtype = subtype
 
     def __repr__(self):
-        return {'name': self.name, 'type': self.category.name, 'description': self.description,
-                'effects': self.effects, 'recipe': self.recipe}.__str__()
+        dict_form = {'name': self.name, 'type': self.main_type.name, 'description': self.description,
+                     'effects': self.effects, 'recipe': self.recipe}
+        if self.subtype:
+            dict_form['subtype'] = self.subtype.name
+
+        return dict_formm.__str__()
 
     def __str__(self):
         return self.__repr__()

@@ -71,8 +71,11 @@ def load_potions_from_xml(filename):
         name = node.get('name', 'dummy')
         desc = node.find('xmlns:description', ns).text
 
-        cat_text = node.find('xmlns:category', ns).text
-        cat = PotionType[cat_text]
+        type_text = node.find('xmlns:type', ns).text
+        main_type = PotionType[type_text]
+
+        xml_subtype = node.find('xmlns:subtype', ns)
+        subtype = PotionType[xml_subtype.text] if xml_subtype is not None else None
 
         xml_effects = node.find('xmlns:effects', ns).findall('xmlns:effect', ns)
         effects = [parse_xml_numbers(xml_eff.attrib) for xml_eff in xml_effects]
@@ -82,6 +85,6 @@ def load_potions_from_xml(filename):
         recipe_ele = [parse_xml_numbers(xml_ele.attrib) for xml_ele in xml_recipe_ele]
         recipe = recipe_ele
 
-        potions.append(Potion(name, cat, desc, effects, recipe))
+        potions.append(Potion(name, main_type, desc, effects, recipe, subtype))
         
     return potions
