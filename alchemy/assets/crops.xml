@@ -1,106 +1,106 @@
 <?xml version="1.0"?>
-<crops xmlns="https://eltoraz.github.io/alchemy"
+<reagents xmlns="https://eltoraz.github.io/alchemy"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="https://eltoraz.github.io/alchemy crops.xsd">
-    <crop name="banana">
+       xsi:schemaLocation="https://eltoraz.github.io/alchemy reagents.xsd">
+    <reagent name="banana">
         <description>At the peak of ripeness. Sweet!</description>
         <properties>
             <element element="Aura" concentration="15.5"/>
         </properties>
-    </crop>
-    <crop name="carrot">
+    </reagent>
+    <reagent name="carrot">
         <description>Has a nice crunch</description>
         <properties>
             <element element="Earth" concentration="4.0"/>
             <element element="Water" concentration="6.0"/>
         </properties>
-    </crop>
-    <crop name="chili">
+    </reagent>
+    <reagent name="chili">
         <description>Chilis come in many shapes and sizes. This so happens to be one of the spicier variants!</description>
         <properties>
             <element element="Fire" concentration="15.0"/>
             <element element="Lava" concentration="7.5"/>
         </properties>
-    </crop>
-    <crop name="coffee beans">
+    </reagent>
+    <reagent name="coffee beans">
         <description>Packed with caffeine!</description>
         <properties>
             <element element="Aura" concentration="57.5"/>
             <element element="Spirit" concentration="9.0"/>
         </properties>
-    </crop>
-    <crop name="corn">
+    </reagent>
+    <reagent name="corn">
         <description></description>
         <properties>
             <element element="Water" concentration="7.0"/>
             <element element="Sound" concentration="1.0"/>
         </properties>
-    </crop>
-    <crop name="grapes">
+    </reagent>
+    <reagent name="grapes">
         <description>A bunch of ripe, juicy grapes</description>
         <properties>
             <element element="Spirit" concentration="0.25"/>
             <element element="Water" concentration="6.0"/>
         </properties>
-    </crop>
-    <crop name="apple">
+    </reagent>
+    <reagent name="apple">
         <description>Delightfully crisp!</description>
         <properties>
             <element element="Water" concentration="10.0"/>
             <element element="Sound" concentration="1.25"/>
         </properties>
-    </crop>
-    <crop name="kelp">
+    </reagent>
+    <reagent name="kelp">
         <description></description>
         <properties>
             <element element="Water" concentration="4.0"/>
             <element element="Sand" concentration="1.2"/>
         </properties>
-    </crop>
-    <crop name="kiwi">
+    </reagent>
+    <reagent name="kiwi">
         <description></description>
         <properties>
             <element element="Air" concentration="15.0"/>
         </properties>
-    </crop>
-    <crop name="mushroom">
+    </reagent>
+    <reagent name="mushroom">
         <description>This one's inert. I think...</description>
         <properties>
             <element element="Earth" concentration="9.0"/>
             <element element="Clay" concentration="2.2"/>
             <element element="Psi" concentration="0.1"/>
         </properties>
-    </crop>
-    <crop name="orange">
+    </reagent>
+    <reagent name="orange">
         <description></description>
         <properties>
             <element element="Water" concentration="6.0"/>
             <element element="Acid" concentration="0.75"/>
         </properties>
-    </crop>
-    <crop name="pineapple">
+    </reagent>
+    <reagent name="pineapple">
         <description></description>
         <properties>
             <element element="Storm" concentration="15.0"/>
             <element element="Water" concentration="6.0"/>
         </properties>
-    </crop>
-    <crop name="potato">
+    </reagent>
+    <reagent name="potato">
         <description></description>
         <properties>
             <element element="Earth" concentration="10.5"/>
             <element element="Water" concentration="2.5"/>
         </properties>
-    </crop>
-    <crop name="rice">
+    </reagent>
+    <reagent name="rice">
         <description></description>
         <properties>
             <element element="Water" concentration="3.0"/>
             <element element="Earth" concentration="4.0"/>
             <element element="Spirit" concentration="0.25"/>
         </properties>
-    </crop>
-    <crop name="sugar">
+    </reagent>
+    <reagent name="sugar">
         <description></description>
         <properties>
             <element element="Air" concentration="3.0"/>
@@ -108,15 +108,15 @@
             <element element="Spirit" concentration="0.01"/>
             <element element="Magnet" concentration="0.001"/>
         </properties>
-    </crop>
-    <crop name="tomato">
+    </reagent>
+    <reagent name="tomato">
         <description></description>
         <properties>
             <element element="Water" concentration="6.0"/>
             <element element="Acid" concentration="1.0"/>
         </properties>
-    </crop>
-    <crop name="wheat">
+    </reagent>
+    <reagent name="wheat">
         <description></description>
         <properties>
             <element element="Earth" concentration="6.0"/>
@@ -124,7 +124,7 @@
             <element element="Spirit" concentration="0.4"/>
             <element element="Psi" concentration="0.05"/>
         </properties>
-    </crop><crop name="cactus">
+    </reagent><reagent name="cactus">
         <description></description>
         <properties>
             <element element="Water" concentration="4.5"/>
@@ -132,5 +132,5 @@
             <element element="Sand" concentration="3.0"/>
             <element element="Spirit" concentration="2.5"/>
         </properties>
-    </crop>
-</crops>
+    </reagent>
+</reagents>

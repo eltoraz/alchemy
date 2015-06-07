@@ -1,10 +1,10 @@
 <xs:schema elementFormDefault="qualified"
            xmlns="https://eltoraz.github.io/alchemy"
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xs:element name="crops">
+    <xs:element name="reagents">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="crop" maxOccurs="unbounded" minOccurs="0">
+                <xs:element name="reagent" maxOccurs="unbounded" minOccurs="0">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element type="xs:string" name="description"/>
