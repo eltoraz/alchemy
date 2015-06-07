@@ -6,26 +6,25 @@ import xml.etree.ElementTree as ET
 
 from alchemy.config import assets_path
 from alchemy.config import xml_namespace as ns
-from alchemy.potion import PotionType
 
 # XML attributes always parse as strings with this XML library, so convert numbers present to a more convenient format
-# Currently supports: potion.effect, potion.recipe
+# Currently supports: reagent.elements, potion.effect, potion.recipe
 # TODO: catch ValueError raised if the XML attrib is malformed/invalid
-def parse_xml_numbers(eff_dict):
+def parse_xml_numbers(orig_dict):
     """Parse numbers from certain strings obtained from reading in an XML file
 
     Arguments:
-      eff_dict (dict): dict with some numeric values, currently represented as str
+      orig_dict (dict): dict with some numeric values, currently represented as str
 
     Returns:
       result (dict): original dict with numeric values converted from str -> float
     """
-    result = eff_dict
-    number_attribs = ['magnitude', 'min', 'max']
+    result = orig_dict
+    number_attribs = ['magnitude', 'min', 'max', 'concentration']
 
-    for key in eff_dict:
+    for key in orig_dict:
         if key in number_attribs:
-            result[key] = literal_eval(eff_dict[key])
+            result[key] = literal_eval(orig_dict[key])
 
     return result
 
@@ -48,10 +47,8 @@ def load_reagents_from_xml(filename):
 
         # The xmlns prefix (not present in the actual XML) is needed when naming XML elements due to the way the
         # etree library handles namespaces
-        xml_elements = node.find('xmlns:properties', ns).findall('xmlns:element', ns)
-        props = [{'element': xml_ele.get('element'),
-                'concentration': literal_eval(xml_ele.get('concentration'))}
-                for xml_ele in xml_elements]
+        xml_properties = node.find('xmlns:properties', ns).findall('xmlns:element', ns)
+        props = [parse_xml_numbers(xml_prop.attrib) for xml_prop in xml_properties]
 
         reagents.append(Reagent(name, desc, props))
         
@@ -66,7 +63,7 @@ def load_potions_from_xml(filename):
     Returns:
       potions (list of Potion): potions parsed from the XML file
     """
-    from alchemy.potion import Potion
+    from alchemy.potion import PotionType, Potion
     potions = []
     
     for node in ET.parse(assets_path + filename).getroot():
