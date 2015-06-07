@@ -2,11 +2,11 @@
 <potions xmlns="https://eltoraz.github.io/alchemy"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://eltoraz.github.io/alchemy potions.xsd">
-    <potion name="healing potion">
+    <potion name="weak healing potion">
         <type>potion</type>
-        <description>just your average vitality-restoring potion</description>
+        <description>Just your average vitality-restoring potion</description>
         <effects>
-            <effect effect="restore_health" magnitude="25.0"/>
+            <effect effect="restore_health" magnitude="15.0"/>
         </effects>
         <recipe>
             <element element="Water" min="10.0" max="12.0"/>
@@ -15,13 +15,55 @@
     </potion>
     <potion name="haste salve">
         <type>salve</type>
-        <description>apply to ankles or equivalent</description>
+        <description>Apply to your ankles (or your species' equivalent)</description>
         <effects>
             <effect effect="haste" magnitude="2.0"/>
         </effects>
         <recipe>
             <element element="Fire" min="5.0" max="10.0"/>
             <element element="Storm" min="6.0" max="8.0"/>
+        </recipe>
+    </potion>
+    <potion name="ironskin salve">
+        <type>salve</type>
+        <description>Great for surviving pitched combat! Just don't miss a spot.</description>
+        <effects>
+            <effect effect="ironskin"/>
+        </effects>
+        <recipe>
+            <element element="Earth" min="15.0" max="25.0"/>
+            <element element="Crystal" min="1.0" max="2.0"/>
+        </recipe>
+    </potion>
+    <potion name="weak explosive">
+        <type>volatile</type>
+        <subtype>explosive</subtype>
+        <description>
+            This concotion reacts violently upon exposure to air. Stand back when the glass breaks!
+        </description>
+        <effects>
+            <effect effect="explosion" magnitude="2.0"/>
+        </effects>
+        <recipe>
+            <element element="Fire" min="8.0" max="12.0"/>
+            <element element="Air" min="1.0" max="3.5"/>
+            <element element="Storm" min="0.1" max="0.75"/>
+        </recipe>
+    </potion>
+    <potion name="irritating mist">
+        <type>vapor</type>
+        <subtype>poison</subtype>
+        <description>
+            A vapor that causes mild irritatition to exposed tissue. It's worse if inhaled.
+        </description>
+        <effects>
+            <effect effect="cloud" magnitude="3.0" duration="10.0"/>
+            <effect effect="irritant" magnitude="0.5" duration="2.0"/>
+            <effect effect="poison" magnitude="0.75" duration="5.0"/>
+        </effects>
+        <recipe>
+            <element element="Air" min="6.0" max="9.0"/>
+            <element element="Poison" min="0.5" max="1.5"/>
         </recipe>
     </potion>
 </potions>

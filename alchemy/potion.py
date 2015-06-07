@@ -17,6 +17,8 @@ class PotionType(Enum):
     vapor = 4
 
     poison = 10
+    explosive = 11
+    corrosive = 12
 
 # TODO: consider a separate class for effects instead of passing dicts around
 # TODO: support recipes that call for specific ingredients alongside element requirements
@@ -27,10 +29,10 @@ class Potion:
       name (str): display name
       main_type (PotionType): category the potion falls under
       desc (str): flavor text
-      effects (list of dict): positive/negative effects (incl. magnitudes where appropriate)
-                              {"effect": string, "magnitude": number}
+      effects (list of dict): positive/negative effects (incl. magnitudes/duration where appropriate)
+                              {"effect": str, "magnitude": float, "duration": float}
       recipe (list of dict): elements (w/ concentration thresholds) required to craft potion
-                             {"element": name, "min": number, "max": number}
+                             {"element": str, "min": float, "max": float}
       subtype (PotionType, optional): additional classification for the potion; defaults to
                                       None if not specified
 
@@ -39,10 +41,10 @@ class Potion:
       main_type (PotionType): category the potion falls under
       description (str): flavor text (preferably more than just a list of effects)
       effects (list of dict): effects of applying the potion
-                              {"effect": string, "magnitude": number}
+                              {"effect": str, "magnitude": float, "duration": float}
       recipe (list of dict): ingredients needed to craft potion (either specific ones or
                              required elements w/ concentration thresholds)
-                             {"element": name, "min": number, "max": number}
+                             {"element": str, "min": float, "max": float}
       subtype (PotionType): additional (optional) classification for the potion; None if
                             it doesn't have one
     """
@@ -60,7 +62,7 @@ class Potion:
         if self.subtype:
             dict_form['subtype'] = self.subtype.name
 
-        return dict_formm.__str__()
+        return dict_form.__str__()
 
     def __str__(self):
         return self.__repr__()

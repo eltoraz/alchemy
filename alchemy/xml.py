@@ -20,7 +20,7 @@ def parse_xml_numbers(orig_dict):
       result (dict): original dict with numeric values converted from str -> float
     """
     result = orig_dict
-    number_attribs = ['magnitude', 'min', 'max', 'concentration']
+    number_attribs = ['magnitude', 'duration', 'min', 'max', 'concentration']
 
     for key in orig_dict:
         if key in number_attribs:
