@@ -1,7 +1,9 @@
 """
 An alchemy ingredient
 """
-class Reagent:
+from alchemy.item import Item
+
+class Reagent(Item):
     """An item/object/etc. that can be used in an alchemical concoction
 
     Arguments:
@@ -10,10 +12,10 @@ class Reagent:
       elements (list of dict): affinities of the reagent
                                [{"element": string, "concentration": number}]
     """
-    def __init__(self, name, description, elements):
-        self.name = name
-        self.description = description
+    def __init__(self, name, desc, elements):
         self.elements = elements
+
+        super().__init__(name, desc)
 
     def __repr__(self):
         return {'name': self.name, 'description': self.description, 'elements': self.elements}.__str__()

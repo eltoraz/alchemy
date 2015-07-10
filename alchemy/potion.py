@@ -3,6 +3,8 @@ A potion (generally speaking), along with related functions
 """
 from enum import Enum
 
+from alchemy.item import Item
+
 class PotionType(Enum):
     """All the possible classifications for potions
 
@@ -22,7 +24,7 @@ class PotionType(Enum):
 
 # TODO: consider a separate class for effects instead of passing dicts around
 # TODO: support recipes that call for specific ingredients alongside element requirements
-class Potion:
+class Potion(Item):
     """A potion
     
     Arguments:
@@ -49,12 +51,12 @@ class Potion:
                             it doesn't have one
     """
     def __init__(self, name, main_type, desc, effects, recipe, subtype=None):
-        self.name = name
         self.main_type = main_type
-        self.description = desc
         self.effects = effects
         self.recipe = recipe
         self.subtype = subtype
+
+        super().__init__(name, desc)
 
     def __repr__(self):
         dict_form = {'name': self.name, 'type': self.main_type.name, 'description': self.description,
