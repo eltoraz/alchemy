@@ -2,8 +2,12 @@
 A potion (generally speaking), along with related functions
 """
 from enum import Enum
+import xml.etree.ElementTree as ET
 
+from alchemy.config import assets_path
+from alchemy.config import xml_namespace as ns
 from alchemy.item import Item
+from alchemy.util import eval_xml_numbers
 
 class PotionType(Enum):
     """All the possible classifications for potions
@@ -51,12 +55,11 @@ class Potion(Item):
                             it doesn't have one
     """
     def __init__(self, name, main_type, desc, effects, recipe, subtype=None):
+        super().__init__(name, desc)
         self.main_type = main_type
         self.effects = effects
         self.recipe = recipe
         self.subtype = subtype
-
-        super().__init__(name, desc)
 
     def __repr__(self):
         dict_form = {'name': self.name, 'type': self.main_type.name, 'description': self.description,
@@ -102,7 +105,38 @@ def get_match(elements):
 
 # ------------------------------------------------------
 # Load potions from XML
-# note: alchemy.xml module needs the Potion class to be defined before it can be imported
-import alchemy.xml
+def load_potions_from_xml(filename):
+    """Build a list of potions from the specified (XML) file
 
-potions = alchemy.xml.load_potions_from_xml('potions.xml')
+    Arguments:
+      filename (str): name of the XML file to read from
+
+    Returns:
+      potions (list of Potion): potions parsed from the XML file
+    """
+    potions = []
+    
+    for node in ET.parse(assets_path + filename).getroot():
+        # parse each XML node and add to internal potions list
+        name = node.get('name', 'dummy')
+        desc = node.find('xmlns:description', ns).text.strip()
+
+        type_text = node.find('xmlns:type', ns).text.strip()
+        main_type = PotionType[type_text]
+
+        xml_subtype = node.find('xmlns:subtype', ns)
+        subtype = PotionType[xml_subtype.text.strip()] if xml_subtype is not None else None
+
+        xml_effects = node.find('xmlns:effects', ns).findall('xmlns:effect', ns)
+        effects = [eval_xml_numbers(xml_eff.attrib) for xml_eff in xml_effects]
+
+        # TODO: expand for unique ingredients (right now this only works with recipes defined soley on constituent elements)
+        xml_recipe_ele = node.find('xmlns:recipe', ns).findall('xmlns:element', ns)
+        recipe_ele = [eval_xml_numbers(xml_ele.attrib) for xml_ele in xml_recipe_ele]
+        recipe = recipe_ele
+
+        potions.append(Potion(name, main_type, desc, effects, recipe, subtype))
+        
+    return potions
+
+potions = load_potions_from_xml('potions.xml')
