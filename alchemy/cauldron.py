@@ -68,7 +68,7 @@ class Cauldron:
                 print(' - ', potion.name)
             # TODO: narrow down the desired brew before clearing the cauldron
             #self.elements = {}
+            return results[0]
         else:
             print('Oops, that\'s not a winning combination! Better try again...')
-
-        return result
+            return None
