@@ -1,6 +1,7 @@
 """
 A potion (generally speaking), along with related functions
 """
+from collections import namedtuple
 from enum import Enum
 import xml.etree.ElementTree as ET
 
@@ -76,32 +77,33 @@ class Potion(Item):
 #       sure there isn't any ambiguity (from multiple potions with similar recipes)
 # TODO: find a more efficient way to find matches
 # TODO: adapt for special properties/ingredient requirements in recipe once that's implemented
-def get_match(elements):
-    """Return the first potion from the potions list that matches the provided ingredients.
+def get_matches(elements):
+    """Return all potions from the potions list that can be mixed with the provided ingredients.
 
     Arguments:
       elements (dict): mapping of elements -> concentrations to test against potion recipes
 
     Returns:
-      potion (Potion): potion whose recipe matches the ingredients, OR
-      None: if the elements/concentrations don't match a recipe
+      results_set (list of Potion): potions whose recipes match the ingredients
+                                    ([] if no matches)
     """
+    element_range = namedtuple('element_range', 'min max')
     elements_set = set(elements.keys())
+    results_set = []
+
     for potion in potions:
-        # first step: check whether the required elements (and no additional ones) are present
         # converting min/max to a tuple in this dict for use later
-        recipe_elements = {ele['element']: (ele['min'], ele['max']) for ele in potion.recipe}
-        if elements_set != set(recipe_elements.keys()):
-            continue
+        recipe_elements = {ele['element']: element_range(ele['min'], ele['max']) for ele in potion.recipe}
 
-        # if the ingredients match the recipe, just make sure they're between the specified min & max
-        if all([elements[ele] >= recipe_elements[ele][0] and
-                elements[ele] <= recipe_elements[ele][1] for
+        # check that the elements in the recipe form a subset of the provided set, and that
+        # the range specified by the recipe contains the provided quantities
+        if set(recipe_elements.keys()) <= elements_set and
+           all([elements[ele] >= recipe_elements[ele].min and
+                elements[ele] <= recipe_elements[ele].max for
                 ele in elements_set]):
-            return potion
+            results_set.append(potion)
 
-    # fallback (no match)
-    return None
+    return results_set
 
 # ------------------------------------------------------
 # Load potions from XML
@@ -130,7 +132,7 @@ def load_potions_from_xml(filename):
         xml_effects = node.find('xmlns:effects', ns).findall('xmlns:effect', ns)
         effects = [eval_xml_numbers(xml_eff.attrib) for xml_eff in xml_effects]
 
-        # TODO: expand for unique ingredients (right now this only works with recipes defined soley on constituent elements)
+        # TODO: expand for unique ingredients (as opposed to just combinations of elements)
         xml_recipe_ele = node.find('xmlns:recipe', ns).findall('xmlns:element', ns)
         recipe_ele = [eval_xml_numbers(xml_ele.attrib) for xml_ele in xml_recipe_ele]
         recipe = recipe_ele

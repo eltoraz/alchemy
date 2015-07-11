@@ -55,20 +55,19 @@ class Cauldron:
     def brew(self):
         """Attempt to combine the elements in the cauldron into a matching potion.
 
-        If a match is found, self.elements is cleared, otherwise just print a failure message
+        If a match is found, the cauldron's contents are cleared, otherwise just print a failure message
 
         Returns:
           result (Potion): a potion whose recipe matches the contents of the Cauldron, OR
           None: if the contents of the Cauldron don't match a potion in the list
         """
-        result = alchemy.potion.get_match(self.elements)
-        if result is not None:
-            ele_list = list(self.elements.keys())
-            print('Brew successful! Created ', result.name, ' from ', sep='', end='')
-            for ele in ele_list[0:-1]:
-                print(self.elements[ele], ' units of ', ele, ', ', sep='', end='')
-            print('and ', self.elements[ele_list[-1]], ' units of ', ele_list[-1], '.', sep='')
-            self.elements = {}
+        results = alchemy.potion.get_matches(self.elements)
+        if results:
+            print("Success! The following concoctions can be brewed from the cauldron's contents:")
+            for potion in results:
+                print(' - ', potion.name)
+            # TODO: narrow down the desired brew before clearing the cauldron
+            #self.elements = {}
         else:
             print('Oops, that\'s not a winning combination! Better try again...')
 
