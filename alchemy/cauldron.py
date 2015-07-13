@@ -9,9 +9,11 @@ class Cauldron:
     Arguments:
       reagents (list of Reagent): ingredients to add to the cauldron to start out
     """
-    def __init__(self, reagents):
+    def __init__(self, reagents=[]):
         self.elements = {}
         self.add_ingredients(*reagents)
+
+        self.update()
 
     def add_ingredients(self, *reagents):
         """Add ingredients to the mix.
@@ -25,6 +27,8 @@ class Cauldron:
         for ingr in reagents:
             for ele in ingr.elements:
                 self.elements[ele['element']] = self.elements.get(ele['element'], 0.0) + ele['concentration']
+
+        self.update()
 
     def distill(self, element, amount):
         """Remove a certain amount of an element from the Cauldron and return the actual amount distilled.
@@ -52,23 +56,53 @@ class Cauldron:
             self.elements[element] = self.elements[element] - amount
             return amount
 
+        self.update()
+
+    def update(self):
+        """Modify the internal state of the cauldron based on recent changes. Notably, update the
+        perspective recipe list after the contents of the Cauldon changes.
+        """
+        self.possible_results = alchemy.potion.get_matches(self.elements)
+
+    def empty(self):
+        """Empty the Cauldron of all its contents.
+        
+        Not only does this clear self.elements, but self.possible_results as well.
+        """
+        self.elements = {}
+        self.update()
+
+    # TODO: remove print statements when the game handles the results elsewhere
+    # TODO: verify that no extra ingredients are in the cauldron?
     def brew(self):
         """Attempt to combine the elements in the cauldron into a matching potion.
 
-        If a match is found, the cauldron's contents are cleared, otherwise just print a failure message
+        If there's any ambiguity (i.e., multiple recipes fit the contents of the Cauldron),
+        let the player know their options (ex., remove elements to narrow possibilities).
+
+        Note: this operation clears everything from the Cauldon if successful!
 
         Returns:
           result (Potion): a potion whose recipe matches the contents of the Cauldron, OR
+          possible_results (list of Potion): list of potions that can be created, OR
           None: if the contents of the Cauldron don't match a potion in the list
         """
-        results = alchemy.potion.get_matches(self.elements)
-        if results:
-            print("Success! The following concoctions can be brewed from the cauldron's contents:")
-            for potion in results:
-                print(' - ', potion.name)
-            # TODO: narrow down the desired brew before clearing the cauldron
-            #self.elements = {}
-            return results[0]
+        if len(self.possible_results) == 1:
+            ele_list = list(self.elements.keys())
+            result = self.possible_results[0]
+
+            print('Brew successful! Created ', result.name, ' from ', sep='', end='')
+            for ele in ele_list[0:-1]:
+                print(self.elements[ele], ' units of ', ele, ', ', sep='', end='')
+            print('and ', self.elements[ele_list[-1]], ' units of ', ele_list[-1], '.', sep='')
+
+            self.empty()
+            return result
+        elif len(self.possible_results) > 0:
+            print('Making progress! The following potions are possible:')
+            for potion in self.possible_results:
+                print(' -', potion.name)
+            return self.possible_results
         else:
-            print('Oops, that\'s not a winning combination! Better try again...')
+            print("Oops, that's not a winning combination! Better try again...")
             return None

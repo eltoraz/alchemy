@@ -97,10 +97,11 @@ def get_matches(elements):
 
         # check that the elements in the recipe form a subset of the provided set, and that
         # the range specified by the recipe contains the provided quantities
-        if set(recipe_elements.keys()) <= elements_set and
-           all([elements[ele] >= recipe_elements[ele].min and
-                elements[ele] <= recipe_elements[ele].max for
-                ele in elements_set]):
+        # TODO: further testing of this since it wasn't appending properly
+        if set(recipe_elements.keys()) <= elements_set and \
+           all([elements[ele] >= recipe_elements[ele].min and \
+                elements[ele] <= recipe_elements[ele].max for \
+                ele in recipe_elements.keys()]):
             results_set.append(potion)
 
     return results_set
