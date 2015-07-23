@@ -9,8 +9,8 @@ from alchemy.cauldron import Cauldron
 
 test_water = Reagent('testwater', 'water reagent for testing', [{'element': 'Water', 'concentration': 11.0}])
 test_spirit = Reagent('testspirit', 'spirit reagent for testing', [{'element': 'Spirit', 'concentration': 0.5}])
-test_healpot = Potion('healing potion', PotionType['potion'], 'just your average vitality-restoring potion',
-                      [{'effect': 'restore_health', 'magnitude': 25.0}],
+test_healpot = Potion('weak healing potion', PotionType['potion'], 'Just your average vitality-restoring potion',
+                      [{'effect': 'restore_health', 'magnitude': 15.0}],
                       [{'element': 'Water', 'min': 10.0, 'max': 12.0}, {'element': 'Spirit', 'min': 0.1, 'max': 1.0}])
 
 def test_create():

@@ -26,19 +26,21 @@ def test_create():
 #       the potions list gets tweaked
 def test_get_match():
     test_elements = {'Fire': 5.0, 'Storm': 6.0}
-    result = alchemy.potion.get_match(test_elements)
+    results_set = alchemy.potion.get_matches(test_elements)
+    eq_(len(results_set), 1)
+    result = results_set[0]
     eq_(result.name, 'haste salve')
     eq_(result.main_type, PotionType['salve'])
     eq_(result.subtype, None)
-    eq_(result.description, 'apply to ankles or equivalent')
+    eq_(result.description, "Apply to your ankles (or your species' equivalent)")
     eq_(result.effects, [{'effect': 'haste', 'magnitude': 2.0}])
     eq_(result.recipe, [{'element': 'Fire', 'min': 5.0, 'max': 10.0},
                         {'element': 'Storm', 'min': 6.0, 'max': 8.0}])
 
     concentration_mismatch = {'Fire': 11.0, 'Storm': 2.0}
-    result = alchemy.potion.get_match(concentration_mismatch)
-    eq_(result, None)
+    result = alchemy.potion.get_matches(concentration_mismatch)
+    eq_(result, [])
 
     non_matching_elements = {'Acid': 50.0, 'Lava': 100.0, 'Psi': 40.0}
-    result = alchemy.potion.get_match(non_matching_elements)
-    eq_(result, None)
+    result = alchemy.potion.get_matches(non_matching_elements)
+    eq_(result, [])

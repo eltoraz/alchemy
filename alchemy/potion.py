@@ -143,3 +143,5 @@ def load_potions_from_xml(filename):
     return potions
 
 potions = load_potions_from_xml('potions.xml')
+
+# TODO: define a find/filter function to get specific (unordered) entries from the potions list
