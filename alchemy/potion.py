@@ -73,8 +73,6 @@ class Potion(Item):
     def __str__(self):
         return self.__repr__()
 
-# TODO: maybe check whether the potion requirements are a subset of what's in the cauldron, but make
-#       sure there isn't any ambiguity (from multiple potions with similar recipes)
 # TODO: find a more efficient way to find matches
 # TODO: adapt for special properties/ingredient requirements in recipe once that's implemented
 def get_matches(elements):
@@ -95,12 +93,11 @@ def get_matches(elements):
         # converting min/max to a tuple in this dict for use later
         recipe_elements = {ele['element']: element_range(ele['min'], ele['max']) for ele in potion.recipe}
 
-        # check that the elements in the recipe form a subset of the provided set, and that
-        # the range specified by the recipe contains the provided quantities
-        # TODO: further testing of this since it wasn't appending properly
+        # check that the elements in the recipe form a subset of the provided set, and
+        # that the concentration is at least the minimum required
+        # (leave checking the max. tolerated to the caller)
         if set(recipe_elements.keys()) <= elements_set and \
-           all([elements[ele] >= recipe_elements[ele].min and \
-                elements[ele] <= recipe_elements[ele].max for \
+           all([elements[ele] >= recipe_elements[ele].min for \
                 ele in recipe_elements.keys()]):
             results_set.append(potion)
 

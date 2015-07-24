@@ -87,7 +87,14 @@ class Cauldron:
           possible_results (list of Potion): list of potions that can be created, OR
           None: if the contents of the Cauldron don't match a potion in the list
         """
-        if len(self.possible_results) == 1:
+        # possible_results contains potions whose minimum requirements are met,
+        # so we need to make sure the max bound is satisfied when actually
+        # trying to make the brew here
+        range_check = [False]
+        if len(self.possible_results) > 0:
+            range_check = [self.elements[ele['element']] <= ele['max'] for ele in self.possible_results[0].recipe]
+
+        if len(self.possible_results) == 1 and all(range_check):
             ele_list = list(self.elements.keys())
             result = self.possible_results[0]
 
