@@ -54,6 +54,12 @@ def test_distill():
 
     assert_raises(AssertionError, Cauldron([test_spirit]).distill, 'Water', -11.0)
 
+def test_empty():
+    test_cauldron = Cauldron([test_water, test_spirit])
+    test_cauldron.empty()
+    eq_(test_cauldron.elements, {})
+    eq_(test_cauldron.possible_results, [])
+
 def test_brew():
     # matches a recipe
     test_cauldron = Cauldron([test_water, test_spirit])
@@ -67,14 +73,21 @@ def test_brew():
     eq_(test_cauldron.elements, {})
 
     # matches elements but not quantities
+    # (should still return a possible result, just not empty cauldron
     test_cauldron.add_ingredients(test_water, test_spirit,
                                   Reagent('toomuch', 'morespirit', [{'element': 'Spirit', 'concentration': 0.6}]))
     result = test_cauldron.brew()
-    eq_(result, None)
     eq_(test_cauldron.elements, {'Water': 11.0, 'Spirit': 1.1})
+    eq_(len(result), 1)
+    eq_(result[0].name, 'weak healing potion')
 
-    # no match
-    test_cauldron.add_ingredients(Reagent('onthefly', 'n/a', [{'element': 'Air', 'concentration': 4.0}]))
+    # no match (empty cauldron)
+    test_cauldron.empty()
     result = test_cauldron.brew()
     eq_(result, None)
-    eq_(test_cauldron.elements, {'Water': 11.0, 'Spirit': 1.1, 'Air': 4.0})
+
+    # no match (incomplete recipe)
+    test_cauldron.add_ingredients(test_water)
+    result = test_cauldron.brew()
+    eq_(result, None)
+    eq_(test_cauldron.elements, {'Water': 11.0})

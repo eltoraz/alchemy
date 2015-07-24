@@ -24,7 +24,7 @@ def test_create():
 # some overlap with brew in cauldron tests
 # TODO: rewrite this test so it doesn't need to be rewritten every time the relevant potion from
 #       the potions list gets tweaked
-def test_get_match():
+def test_get_matches():
     test_elements = {'Fire': 5.0, 'Storm': 6.0}
     results_set = alchemy.potion.get_matches(test_elements)
     eq_(len(results_set), 1)
@@ -36,6 +36,12 @@ def test_get_match():
     eq_(result.effects, [{'effect': 'haste', 'magnitude': 2.0}])
     eq_(result.recipe, [{'element': 'Fire', 'min': 5.0, 'max': 10.0},
                         {'element': 'Storm', 'min': 6.0, 'max': 8.0}])
+
+    multiple_matches = {'Fire': 8.0, 'Storm': 6.0, 'Air': 2.0}
+    results_set = alchemy.potion.get_matches(multiple_matches)
+    eq_(len(results_set), 2)
+    eq_(results_set[0].name, 'haste salve')
+    eq_(results_set[1].name, 'weak explosive')
 
     concentration_mismatch = {'Fire': 11.0, 'Storm': 2.0}
     result = alchemy.potion.get_matches(concentration_mismatch)
