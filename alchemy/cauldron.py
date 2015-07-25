@@ -28,8 +28,8 @@ class Cauldron:
         for ingr in reagents:
             for ele in ingr.elements:
                 ele_type = ele['element']
-                self.elements[ele_type] = (self.elements.get(ele_type, 0.0)
-                                           + ele['concentration'])
+                self.elements[ele_type] = (self.elements.get(ele_type, 0.0) +
+                                           ele['concentration'])
 
         self.update()
 
