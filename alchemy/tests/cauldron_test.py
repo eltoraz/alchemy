@@ -7,11 +7,15 @@ from alchemy.reagent import Reagent
 from alchemy.potion import PotionType, Potion
 from alchemy.cauldron import Cauldron
 
-test_water = Reagent('testwater', 'water reagent for testing', [{'element': 'Water', 'concentration': 11.0}])
-test_spirit = Reagent('testspirit', 'spirit reagent for testing', [{'element': 'Spirit', 'concentration': 0.5}])
-test_healpot = Potion('weak healing potion', PotionType['potion'], 'Just your average vitality-restoring potion',
+test_water = Reagent('testwater', 'water reagent for testing',
+                     [{'element': 'Water', 'concentration': 11.0}])
+test_spirit = Reagent('testspirit', 'spirit reagent for testing',
+                      [{'element': 'Spirit', 'concentration': 0.5}])
+test_healpot = Potion('weak healing potion', PotionType['potion'],
+                      'Just your average vitality-restoring potion',
                       [{'effect': 'restore_health', 'magnitude': 15.0}],
-                      [{'element': 'Water', 'min': 10.0, 'max': 12.0}, {'element': 'Spirit', 'min': 0.1, 'max': 1.0}])
+                      [{'element': 'Water', 'min': 10.0, 'max': 12.0},
+                       {'element': 'Spirit', 'min': 0.1, 'max': 1.0}])
 
 def test_create():
     # Creating a cauldron with no ingredients has no elements
@@ -25,7 +29,8 @@ def test_add_reagent():
     test_cauldron = Cauldron([])
 
     # note: add_ingredients() can take an arbitrary number of reagents
-    test_cauldron.add_ingredients(Reagent('onthefly', 'n/a', [{'element': 'Air', 'concentration': 4.0}]))
+    test_cauldron.add_ingredients(Reagent('onthefly', 'n/a',
+                                  [{'element': 'Air', 'concentration': 4.0}]))
     eq_(test_cauldron.elements, {'Air': 4.0})
 
     test_cauldron.add_ingredients(test_water, test_spirit)
@@ -37,9 +42,10 @@ def test_add_reagent():
 def test_distill():
     test_cauldron = Cauldron([test_water, test_spirit])
 
-    # distill() can reduce the amount of a given element or remove it entirely
-    # it raises an AssertionError if trying to increase an element
-    # it returns the amount removed (0 if not present, hence none removed)
+    # distill() can reduce the amount of a given element or remove it
+    # entirely it raises an AssertionError if trying to increase an
+    # element it returns the amount removed (0 if not present, hence
+    # none removed)
     result = test_cauldron.distill('Water', 4.0)
     eq_(result, 4.0)
     eq_(test_cauldron.elements, {'Water': 7.0, 'Spirit': 0.5})
@@ -52,7 +58,8 @@ def test_distill():
     eq_(result, 0)
     eq_(test_cauldron.elements, {'Spirit': 0.5})
 
-    assert_raises(AssertionError, Cauldron([test_spirit]).distill, 'Water', -11.0)
+    neg_distill_cauldron = Cauldron([test_spirit])
+    assert_raises(AssertionError, neg_distill_cauldron.distill, 'Water', -11.0)
 
 def test_empty():
     test_cauldron = Cauldron([test_water, test_spirit])
@@ -74,8 +81,9 @@ def test_brew():
 
     # matches elements but not quantities
     # (should still return a possible result, just not empty cauldron
-    test_cauldron.add_ingredients(test_water, test_spirit,
-                                  Reagent('toomuch', 'morespirit', [{'element': 'Spirit', 'concentration': 0.6}]))
+    too_much = Reagent('toomuch', 'morespirit', [{'element': 'Spirit',
+                                                  'concentration': 0.6}])
+    test_cauldron.add_ingredients(test_water, test_spirit, too_much)
     result = test_cauldron.brew()
     eq_(test_cauldron.elements, {'Water': 11.0, 'Spirit': 1.1})
     eq_(len(result), 1)

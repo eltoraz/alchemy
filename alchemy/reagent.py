@@ -15,19 +15,21 @@ class Reagent(Item):
       name (str): display name
       description (str): short flavor text
       elements (list of dict): affinities of the reagent
-                               [{"element": string, "concentration": number}]
+                               [{"element": string,
+                                 "concentration": number}]
     """
     def __init__(self, name, desc, elements):
         super().__init__(name, desc)
         self.elements = elements
 
     def __repr__(self):
-        return {'name': self.name, 'description': self.description, 'elements': self.elements}.__str__()
+        return {'name': self.name, 'description': self.description,
+                'elements': self.elements}.__str__()
 
     def __str__(self):
         return self.__repr__()
 
-# ------------------------------------------------------
+#----------------------------------------------------------------------
 # Load reagents from XML
 # TODO: accept multiple filenames to parse in one function call?
 def load_reagents_from_xml(filename):
@@ -44,13 +46,17 @@ def load_reagents_from_xml(filename):
     for node in ET.parse(assets_path + filename).getroot():
         name = node.get('name', 'dummy')
         desc = node.find('xmlns:description', ns).text
-        if desc:                                        # description may be not be present
+        # description may be not be present
+        if desc:                                        
             desc = desc.strip()
 
-        # The xmlns prefix (not present in the actual XML) is needed when naming XML elements due to the way the
-        # etree library handles namespaces
-        xml_properties = node.find('xmlns:properties', ns).findall('xmlns:element', ns)
-        props = [eval_xml_numbers(xml_prop.attrib) for xml_prop in xml_properties]
+        # The xmlns prefix (not present in the actual XML) is needed
+        # when naming XML elements due to the way the etree library
+        # handles namespaces
+        xml_properties_block = node.find('xmlns:properties', ns)
+        xml_properties = xml_properties_block.findall('xmlns:element', ns)
+        props = [eval_xml_numbers(xml_prop.attrib)
+                 for xml_prop in xml_properties]
 
         reagents.append(Reagent(name, desc, props))
         
