@@ -1,5 +1,4 @@
-"""
-Types of magic from PK's floraverse
+"""Types of magic from PK's floraverse
 """
 # For reference:
 #   - http://floraverse.deviantart.com/journal/Elements-guide-425648924

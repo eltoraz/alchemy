@@ -1,5 +1,4 @@
-"""
-An alchemy ingredient
+"""An alchemy ingredient
 """
 import xml.etree.ElementTree as ET
 

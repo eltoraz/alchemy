@@ -1,5 +1,4 @@
-"""
-A potion (generally speaking), along with related functions
+"""A potion (generally speaking), along with related functions
 """
 from collections import namedtuple
 from enum import Enum

@@ -1,5 +1,4 @@
-"""
-Common config used in multiple modules
+"""Common config used in multiple modules
 """
 
 assets_path = 'alchemy/assets/'

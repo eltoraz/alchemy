@@ -1,5 +1,4 @@
-"""
-Miscellaneous shared utility functions
+"""Miscellaneous shared utility functions
 """
 from ast import literal_eval
 

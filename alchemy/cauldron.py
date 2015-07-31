@@ -1,5 +1,4 @@
-"""
-A (metaphorical) cauldron for combining reagents into a potion
+"""A (metaphorical) cauldron for combining reagents into a potion
 """
 import alchemy.potion
 

@@ -1,5 +1,4 @@
-"""
-A generic item
+"""A generic item
 """
 class Item:
     def __init__(self, name, desc):
