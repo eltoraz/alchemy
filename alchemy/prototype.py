@@ -54,7 +54,7 @@ class Prototype:
               "   - cauldron: elements in the cauldron",
               "   - reagents: ingredients you have in stock",
               "   - potions: potions you've already crafted", sep='\n')
-        print(" - add <reagents>: add the reagents (separated by spaces) to"
+        print(" - add <reagents>: add the reagents (separated by spaces) to",
               "     the cauldron", sep='\n')
         print(" - distill <element> <quantity>: remove an amount of the given",
               "     element from the caulrdon", sep='\n')
