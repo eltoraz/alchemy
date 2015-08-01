@@ -1,4 +1,4 @@
-from alchemy.reagent import crops
+from alchemy.prototype import Prototype
 
-# TODO: for prototype, have a basic interface to select 2+ ingredients, mix them to get a potion
-
+game = Prototype()
+game.run()
