@@ -35,6 +35,12 @@ class Prototype:
             self.handle_input(command)
 
     def handle_input(self, command):
+        """Delegate handling of commands to helper functions.
+
+        Arguments:
+          command (str): (space-separated) verb followed by optional
+                         arguments that define the player's actions
+        """
         # map available commands to methods that carry them out
         actions = {'quit': self.cmd_quit, 'exit': self.cmd_quit,
                    'help': self.cmd_help, 'check': self.cmd_check,
@@ -46,11 +52,27 @@ class Prototype:
 
         actions.get(verb, self.cmd_unknown)(verb, components[1:])
 
-    def cmd_unknown(self, cmd, *args):
-        print("You briefly consider", cmd, "but decide against it.")
+    def cmd_unknown(self, cmd, *args, **kwargs):
+        """Fallback for unrecognized commands. Suggest that the player
+        ask for help if their command failed.
+
+        Arguments:
+          cmd (str): command (that failed in this case)
+          args: unused, but present here for consistency
+          kwargs: 'msg' can be defined to display a custom error
+        """
+        if 'msg' in kwargs:
+            print(kwargs['msg'])
+        else:
+            print("You briefly consider", cmd, "but decide against it.")
         print("(Unrecognized command; try 'help' for the accepted ones!)")
 
     def cmd_help(self, cmd, *args):
+        """Print a brief overview of available commands.
+
+        Arguments: cmd (the command) required for consistency with the
+        other helper functions, but not used.
+        """
         print("Actions available to you today:")
         print(" - help: show this message")
         print(" - quit (or exit): quit the game")
@@ -67,10 +89,27 @@ class Prototype:
         print(" - empty_cauldron - reset the caulrdon (irreversibly!)")
 
     def cmd_quit(self, cmd, *args):
+        """Set the flag used by the main loop to false to gracefully
+        exit the game.
+
+        Arguments: cmd (the command) required for consistency with the
+        other helper functions, but not used.
+        """
         print("That's enough of that. Back to the tedium of your empty shop!")
         self.keep_going = False
 
     def cmd_check(self, cmd, *args):
+        """Check the status of the specified object, or if none
+        specified, give a high-level overview of the game state.
+
+        Arguments:
+          cmd (str): the command used (not used here but required for
+                     consistency with the other helper functions)
+          args: the main loop passes the other arguments as a list of
+                str into args[0]; if empty this triggers the high-
+                level overview, but if it's a recognized category a
+                context-sensitive description is provided
+        """
         if len(args[0]) == 0:
             # high-level overview
             print("You have", len(reagents), "types of reagents to work with.")
@@ -121,6 +160,18 @@ class Prototype:
                 self.cmd_unknown(' '.join(['checking'] + args[0]))
 
     def cmd_add(self, cmd, *args):
+        """Add the named ingredient to the cauldron.
+
+        If the reagent does not match any in the list, display an
+        error and don't change the cauldron.
+
+        Arguments:
+          cmd (str): the command (required for consistency with the
+                     other helper functions but not used)
+          args: the main loop passes the other arguments as a list of
+                str into args[0]; this list must have the name of
+                exactly one reagent to add
+        """
         error = ""
         if len(args[0]) == 0:
             error = "You want to add something to the cauldron, but you\n" + \
