@@ -5,7 +5,7 @@ your inventory. Drink (or otherwise apply) them, but most of the
 effects won't actually do anything yet!
 """
 from alchemy.cauldron import Cauldron
-from alchemy.reagent import reagents
+from alchemy.reagent import get_reagents, reagents
 
 class Prototype:
     """The game (prototype) itself which provides a container for the
@@ -121,7 +121,31 @@ class Prototype:
                 self.cmd_unknown(' '.join(['checking'] + args[0]))
 
     def cmd_add(self, cmd, *args):
-        self.placeholder()
+        error = ""
+        if len(args[0]) == 0:
+            error = "You want to add something to the cauldron, but you\n" + \
+                    "don't know exactly what yet."
+        elif len(args[0]) > 1:
+            # for now, can only add 1 ingredient at a time
+            # TODO: recursively add multiple ingredients, BUT need to
+            #       do error checking before adding any
+            error = "You consider a few reagents to add, but decide to\n" + \
+                    "add them one at a time. These things can be delicate!"
+        else:
+            target_reagent = get_reagents(args[0][0])
+            # TODO: catch cases where multiple results are returned,
+            #       whenever I change the search algorithm
+            if len(target_reagent) == 0:
+                error = "After rooting around for " + args[0][0] + " you\n" + \
+                        "reluctantly determine that you don't have any\n" + \
+                        "to add to your brew."
+            else:
+                self.main_cauldron.add_ingredients(target_reagent[0])
+                print("You add", args[0][0], "to the cauldron, being sure to")
+                print("observe all precautions while handling it.")
+
+        if error:
+            self.cmd_unknown(cmd, *args, msg=error)
 
     def cmd_distill(self, cmd, *args):
         self.placeholder()
@@ -133,4 +157,4 @@ class Prototype:
         self.placeholder()
 
     def placeholder(self):
-        print("PLACEHOLDER TEXT")
+        print("|PLACEHOLDER TEXT|")
