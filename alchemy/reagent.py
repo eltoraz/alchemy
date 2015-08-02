@@ -64,3 +64,24 @@ def load_reagents_from_xml(filename):
 crops = load_reagents_from_xml('crops.xml')
 
 reagents = crops
+
+def get_reagents(name, reagent_list=reagents):
+    """Return reagents matching the provided criteria.
+
+    Arguments:
+      name (str): name of the reagent to find
+      reagent_list (list of Reagent): list of reagents to search
+                                      (default: module's global list)
+
+    Returns:
+      results (list of Reagent): reagents that match the query
+                                 ([] if no match)
+    """
+    results = []
+    # TODO: use a more efficient search algorithm, esp. as the number
+    #       of reagents/complexity of search queries increase
+    for reagent in reagent_list:
+        if name.lower() == reagent.name.lower():
+            results.append(reagent)
+
+    return results

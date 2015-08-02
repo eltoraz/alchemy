@@ -84,41 +84,6 @@ class Potion(Item):
     def __str__(self):
         return self.__repr__()
 
-# TODO: find a more efficient way to find matches
-# TODO: adapt for special properties/ingredient requirements in recipe
-#       once that's implemented
-def get_matches(elements):
-    """Return all potions from the potions list that can be mixed with
-    the provided ingredients.
-
-    Arguments:
-      elements (dict): mapping of elements -> concentrations to test
-                       against potion recipes
-
-    Returns:
-      results_set (list of Potion): potions whose recipes match the
-                                    ingredients ([] if no matches)
-    """
-    element_range = namedtuple('element_range', 'min max')
-    elements_set = set(elements.keys())
-    results_set = []
-
-    for potion in potions:
-        # converting min/max to a tuple in this dict for use later
-        recipe_elements = {ele['element']: element_range(ele['min'],
-                           ele['max']) for ele in potion.recipe}
-
-        # check that the elements in the recipe form a subset of the
-        # provided set, and that the concentration is at least the
-        # minimum required (leave checking the max. tolerated to the
-        # caller)
-        if set(recipe_elements.keys()) <= elements_set and \
-           all([elements[ele] >= recipe_elements[ele].min for
-                ele in recipe_elements.keys()]):
-            results_set.append(potion)
-
-    return results_set
-
 # TODO: define a find/filter function to get specific (unordered)
 #       entries from the potions list (perhaps extend get_matches?)
 
@@ -166,3 +131,40 @@ def load_potions_from_xml(filename):
     return potions
 
 potions = load_potions_from_xml('potions.xml')
+
+# TODO: find a more efficient way to find matches
+# TODO: adapt for special properties/ingredient requirements in recipe
+#       once that's implemented
+def get_matches(elements, potion_list=potions):
+    """Return all potions from the potions list that can be mixed with
+    the provided ingredients.
+
+    Arguments:
+      elements (dict): mapping of elements -> concentrations to test
+                       against potion recipes
+      potion_list (list of Potion): list of potions to search
+                                    (defaults to module's global list)
+
+    Returns:
+      results (list of Potion): potions whose recipes match the
+                                ingredients ([] if no matches)
+    """
+    element_range = namedtuple('element_range', 'min max')
+    elements_set = set(elements.keys())
+    results = []
+
+    for potion in potion_list:
+        # converting min/max to a tuple in this dict for use later
+        recipe_elements = {ele['element']: element_range(ele['min'],
+                           ele['max']) for ele in potion.recipe}
+
+        # check that the elements in the recipe form a subset of the
+        # provided set, and that the concentration is at least the
+        # minimum required (leave checking the max. tolerated to the
+        # caller)
+        if set(recipe_elements.keys()) <= elements_set and \
+           all([elements[ele] >= recipe_elements[ele].min for
+                ele in recipe_elements.keys()]):
+            results.append(potion)
+
+    return results

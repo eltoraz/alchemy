@@ -3,6 +3,7 @@ Tests for reagents
 '''
 from nose.tools import eq_
 
+import alchemy.reagent
 from alchemy.reagent import Reagent
 
 def test_create():
@@ -12,5 +13,9 @@ def test_create():
     eq_(ingredient.name, 'chocolate')
     eq_(ingredient.description, 'food of the gods')
     eq_(ingredient.elements, test_elements)
+
+def test_get_reagents():
+    null_result = alchemy.reagent.get_reagents('NOMATCH')
+    eq_(null_result, [])
 
 # TODO: test __repr__/__str__?
