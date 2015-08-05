@@ -22,4 +22,8 @@ def test_get_reagents():
     eq_(len(one_result), 1)
     eq_(one_result[0].name, 'sugar')
 
+    one_result = alchemy.reagent.get_reagents('Sugar')
+    eq_(len(one_result), 1)
+    eq_(one_result[0].name, 'sugar')
+
 # TODO: test __repr__/__str__?

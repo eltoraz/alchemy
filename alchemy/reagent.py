@@ -66,7 +66,8 @@ crops = load_reagents_from_xml('crops.xml')
 reagents = crops
 
 def get_reagents(name, reagent_list=reagents):
-    """Return reagents matching the provided criteria.
+    """Return reagents matching the provided criteria. Note: case
+    insensitive.
 
     Arguments:
       name (str): name of the reagent to find
