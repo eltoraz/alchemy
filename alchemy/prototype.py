@@ -50,7 +50,7 @@ class Prototype:
         components = command.split(' ')
         verb = components[0].lower()
 
-        actions.get(verb, self.cmd_unknown)(verb, components[1:])
+        actions.get(verb, self.cmd_unknown)(verb, *components[1:])
 
     def cmd_unknown(self, cmd, *args, **kwargs):
         """Fallback for unrecognized commands. Suggest that the player
@@ -71,7 +71,7 @@ class Prototype:
         """Print a brief overview of available commands.
 
         Arguments: cmd (the command) required for consistency with the
-        other helper functions, but not used.
+        other helper functions, but not used. args: unused as well.
         """
         print("Actions available to you today:")
         print(" - help: show this message")
@@ -93,7 +93,7 @@ class Prototype:
         exit the game.
 
         Arguments: cmd (the command) required for consistency with the
-        other helper functions, but not used.
+        other helper functions, but not used. args: unused as well
         """
         print("That's enough of that. Back to the tedium of your empty shop!")
         self.keep_going = False
@@ -106,11 +106,11 @@ class Prototype:
           cmd (str): the command used (not used here but required for
                      consistency with the other helper functions)
           args: the main loop passes the other arguments as a list of
-                str into args[0]; if empty this triggers the high-
+                str into args; if empty this triggers the high-
                 level overview, but if it's a recognized category a
                 context-sensitive description is provided
         """
-        if len(args[0]) == 0:
+        if len(args) == 0:
             # high-level overview
             print("You have", len(reagents), "types of reagents to work with.")
             if len(self.potions_brewed) == 1:
@@ -123,7 +123,7 @@ class Prototype:
             else:
                 print("The cauldron is empty.")
         else:
-            category = args[0][0].lower()
+            category = args[0].lower()
             reagent_options = ['reagents', 'ingredients']
             potion_options = ['potions', 'stock', 'brews']
             if category == 'cauldron':
@@ -157,7 +157,7 @@ class Prototype:
                         print(" ", i+1, ". ", potion.name, sep='')
             else:
                 # unknown argument
-                self.cmd_unknown(' '.join(['checking'] + args[0]))
+                self.cmd_unknown(' '.join(['checking'] + args))
 
     def cmd_add(self, cmd, *args):
         """Add the named ingredient to the cauldron.
@@ -169,30 +169,30 @@ class Prototype:
           cmd (str): the command (required for consistency with the
                      other helper functions but not used)
           args: the main loop passes the other arguments as a list of
-                str into args[0]; this list must have the name of
+                str into args; this list must have the name of
                 exactly one reagent to add
         """
         error = ""
-        if len(args[0]) == 0:
+        if len(args) == 0:
             error = "You want to add something to the cauldron, but you\n" + \
                     "don't know exactly what yet."
-        elif len(args[0]) > 1:
+        elif len(args) > 1:
             # for now, can only add 1 ingredient at a time
             # TODO: recursively add multiple ingredients, BUT need to
             #       do error checking before adding any
             error = "You consider a few reagents to add, but decide to\n" + \
                     "add them one at a time. These things can be delicate!"
         else:
-            target_reagent = get_reagents(args[0][0])
+            target_reagent = get_reagents(args[0])
             # TODO: catch cases where multiple results are returned,
             #       whenever I change the search algorithm
             if len(target_reagent) == 0:
-                error = "After rooting around for " + args[0][0] + " you\n" + \
+                error = "After rooting around for " + args[0] + " you\n" + \
                         "reluctantly determine that you don't have any\n" + \
                         "to add to your brew."
             else:
                 self.main_cauldron.add_ingredients(target_reagent[0])
-                print("You add", args[0][0], "to the cauldron, being sure to")
+                print("You add", args[0], "to the cauldron, being sure to")
                 print("observe all precautions while handling it.")
 
         if error:
