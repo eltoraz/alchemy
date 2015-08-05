@@ -1,9 +1,10 @@
-"""Types of magic from PK's floraverse
-"""
-# For reference:
-#   - http://floraverse.deviantart.com/journal/Elements-guide-425648924
-#   - https://docs.google.com/spreadsheets/d/1yoH7I7zblp1gfJztv24-HiPUY-MqXuGxUIznfKqvOng/edit#gid=0
+"""Types of magic. Most things will have an elemental affinity that
+governs behavior, interactions, etc.
 
+For reference:
+ - http://floraverse.deviantart.com/journal/Elements-guide-425648924
+ - https://docs.google.com/spreadsheets/d/1yoH7I7zblp1gfJztv24-HiPUY-MqXuGxUIznfKqvOng/edit#gid=0
+"""
 # this is mostly used to index the element table (the empty string key
 # allows us to get primary as well as secondary elements)
 primary_elements = {'': 0,
@@ -20,6 +21,11 @@ element_table = \
             ['Air',    'Light',  'Cloud',    'Storm',    'Sand',     'Sound'],
             ['Earth',  'Lava',   'Clay',     'Sand',     'Crystal',  'Magnet'],
             ['Spirit', 'Aura',   'Poison',   'Sound',    'Magnet',   'Psi']]
+
+# create a set from the above table containing all the primary and
+# secondary elements (making sure to remove the placeholder '')
+element_set = \
+        set(element_table[0]).union(*map(set, element_table[1:])).discard('')
 
 def get_element(first, second=''):
     """Return the element resulting from combining the specified
@@ -40,4 +46,3 @@ def get_element(first, second=''):
     #       than a string
     # TODO: (far off): tertiary elements?!
     return element_table[primary_elements[first]][primary_elements[second]]
-
