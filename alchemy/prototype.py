@@ -5,6 +5,7 @@ your inventory. Drink (or otherwise apply) them, but most of the
 effects won't actually do anything yet!
 """
 from alchemy.cauldron import Cauldron
+from alchemy.elements import element_set
 from alchemy.reagent import get_reagents, reagents
 
 class Prototype:
@@ -50,9 +51,11 @@ class Prototype:
         components = command.split(' ')
         verb = components[0].lower()
 
-        actions.get(verb, self.cmd_unknown)(verb, *components[1:])
+        actions.get(verb, self.cmd_error)(verb, *components[1:])
 
-    def cmd_unknown(self, cmd, *args, **kwargs):
+    # TODO: perform text formatting here so msg being passed in doesn't
+    #       need to be manually line-broken by the caller
+    def cmd_error(self, cmd, *args, **kwargs):
         """Fallback for unrecognized commands. Suggest that the player
         ask for help if their command failed.
 
@@ -98,6 +101,7 @@ class Prototype:
         print("That's enough of that. Back to the tedium of your empty shop!")
         self.keep_going = False
 
+    # TODO: check elements for reference?
     def cmd_check(self, cmd, *args):
         """Check the status of the specified object, or if none
         specified, give a high-level overview of the game state.
@@ -105,10 +109,10 @@ class Prototype:
         Arguments:
           cmd (str): the command used (not used here but required for
                      consistency with the other helper functions)
-          args: the main loop passes the other arguments as a list of
-                str into args; if empty this triggers the high-
-                level overview, but if it's a recognized category a
-                context-sensitive description is provided
+          args: the main loop passes the other user-entered parameters
+                as positional arguments; if empty this triggers the
+                high-level overview, but if it's a recognized category
+                a context-sensitive description is provided
         """
         if len(args) == 0:
             # high-level overview
@@ -157,7 +161,7 @@ class Prototype:
                         print(" ", i+1, ". ", potion.name, sep='')
             else:
                 # unknown argument
-                self.cmd_unknown(' '.join(['checking'] + args))
+                self.cmd_error(' '.join(['checking'] + args))
 
     def cmd_add(self, cmd, *args):
         """Add the named ingredient to the cauldron.
@@ -168,9 +172,9 @@ class Prototype:
         Arguments:
           cmd (str): the command (required for consistency with the
                      other helper functions but not used)
-          args: the main loop passes the other arguments as a list of
-                str into args; this list must have the name of
-                exactly one reagent to add
+          args: the main loop passes the other user-entered parameters
+                as positional arguments; exactly one is required
+                args[0] must be the name of a reagent to add
         """
         error = ""
         if len(args) == 0:
@@ -196,10 +200,71 @@ class Prototype:
                 print("observe all precautions while handling it.")
 
         if error:
-            self.cmd_unknown(cmd, *args, msg=error)
+            self.cmd_error(cmd, *args, msg=error)
 
     def cmd_distill(self, cmd, *args):
-        self.placeholder()
+        """Distill the contents of the caulrdon, removing a specified
+        amount of a specified element.
+
+        If the element specified is invalid or not present in the
+        cauldron, display an error and make no changes.
+
+        Arguments:
+          cmd (str): this command (required for consistency with other
+                     helper functions but otherwised not used here)
+          args: the main loop passes the other user-entered parameters
+                as positional arguments; 1 is required, 1 is optional
+                args[0] must be the element to remove
+                args[1] is the quantity to remove (all present if
+                        omitted)
+        """
+        element = ''
+        error = ""
+        amount = 0.0
+
+        if not self.main_cauldron.elements:
+            error = "It's going to be awfully hard to distill something\n" + \
+                    "from an empty cauldron!"
+        elif len(args) == 0:
+            error = "You can siphon off any single element from the\n" + \
+                    "cauldron, but you need to decide which one!"
+        elif len(args) > 2:
+            error = "Distillation can be a delicate process; you should\n" + \
+                    "concentrate on it without distractions! (Too many\n" + \
+                    "arguments specified - max 2)"
+        else:
+            element = args[0].capitalize()
+            if element not in element_set:
+                error = "You're not quite sure why it crossed your mind\n" + \
+                        "try to distill " + element + ", but you rightly\n" + \
+                        "realize that it's not an element."
+            elif len(args) == 1:
+                amount = self.main_cauldron.elements.get(element, 0.0)
+            else len(args) == 2:
+                try:
+                    amount = float(args[1])
+                except ValueError:
+                    error = "You prepare to distill " + element + "but\n" + \
+                            "quickly realize you've miscalibrated your\n" + \
+                            "measuring apparatus! (Amount to distill not\n" + \
+                            "recognized as a number)"
+
+        if not error:
+            try:
+                actual_amount = self.main_cauldron.distill(element, amount)
+            except AssertionError as e:
+                error = e + " And you thought you were onto something."
+            else:
+                if actual_amount > 0.0:
+                    print("You carefully distill", actual_amount, "units of",
+                        element, "from the mixture.")
+                elif actual_amount == 0.0 and amount > actual_amount:
+                    print("You try to distill", element, "from the mixture in",
+                          "the cauldron, but quickly come to the conclusion",
+                          "that it wasn't present in the first place!")
+
+        if error:
+            self.cmd_error(cmd, *args, msg=error)
 
     def cmd_brew(self, cmd, *args):
         self.placeholder()
