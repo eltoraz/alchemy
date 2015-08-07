@@ -53,7 +53,8 @@ class Cauldron:
                                             Cauldron (0 if not present)
         """
         # TODO: validate the element, perhaps?
-        assert amount >= 0, 'Distilling cannot increase the concentration!'
+        assert amount >= 0, \
+                "Distilling cannot increase the element's concentration!"
 
         current_amount = self.elements.get(element, 0)
 

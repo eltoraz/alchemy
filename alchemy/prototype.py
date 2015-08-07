@@ -66,9 +66,11 @@ class Prototype:
         """
         if 'msg' in kwargs:
             print(kwargs['msg'])
+            print("(There was an error in your command; watch out for typos",
+                  "or try 'help' for notes on accepted syntax)", sep='\n')
         else:
             print("You briefly consider", cmd, "but decide against it.")
-        print("(Unrecognized command; try 'help' for the accepted ones!)")
+            print("(Unrecognized command; try 'help' for the accepted ones!)")
 
     def cmd_help(self, cmd, *args):
         """Print a brief overview of available commands.
@@ -231,7 +233,7 @@ class Prototype:
         elif len(args) > 2:
             error = "Distillation can be a delicate process; you should\n" + \
                     "concentrate on it without distractions! (Too many\n" + \
-                    "arguments specified - max 2)"
+                    "arguments specified - max 2, the element and amount)"
         else:
             element = args[0].capitalize()
             if element not in element_set:
@@ -240,11 +242,11 @@ class Prototype:
                         "realize that it's not an element."
             elif len(args) == 1:
                 amount = self.main_cauldron.elements.get(element, 0.0)
-            else len(args) == 2:
+            else:
                 try:
                     amount = float(args[1])
                 except ValueError:
-                    error = "You prepare to distill " + element + "but\n" + \
+                    error = "You prepare to distill " + element + " but\n" + \
                             "quickly realize you've miscalibrated your\n" + \
                             "measuring apparatus! (Amount to distill not\n" + \
                             "recognized as a number)"
@@ -253,12 +255,13 @@ class Prototype:
             try:
                 actual_amount = self.main_cauldron.distill(element, amount)
             except AssertionError as e:
-                error = e + " And you thought you were onto something."
+                error = '\n'.join([e.args[0],
+                                  "And you thought you were onto something."])
             else:
                 if actual_amount > 0.0:
                     print("You carefully distill", actual_amount, "units of",
                         element, "from the mixture.")
-                elif actual_amount == 0.0 and amount > actual_amount:
+                else:
                     print("You try to distill", element, "from the mixture in",
                           "the cauldron, but quickly come to the conclusion",
                           "that it wasn't present in the first place!")

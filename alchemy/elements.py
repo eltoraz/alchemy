@@ -24,8 +24,8 @@ element_table = \
 
 # create a set from the above table containing all the primary and
 # secondary elements (making sure to remove the placeholder '')
-element_set = \
-        set(element_table[0]).union(*map(set, element_table[1:])).discard('')
+element_set = set(element_table[0]).union(*map(set, element_table[1:]))
+element_set.discard('')
 
 def get_element(first, second=''):
     """Return the element resulting from combining the specified
