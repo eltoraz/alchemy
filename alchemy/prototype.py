@@ -162,8 +162,8 @@ class Prototype:
                     for i, potion in enumerate(self.potions_brewed):
                         print(" ", i+1, ". ", potion.name, sep='')
             else:
-                # unknown argument
-                self.cmd_error(' '.join(['checking'] + args))
+                # unknown argument(s)
+                self.cmd_error(' '.join(['checking'] + list(args)))
 
     def cmd_add(self, cmd, *args):
         """Add the named ingredient to the cauldron.
