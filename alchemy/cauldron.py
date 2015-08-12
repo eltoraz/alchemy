@@ -81,16 +81,12 @@ class Cauldron:
         self.elements = {}
         self.update()
 
-    # TODO: remove print statements when the game handles the results
-    #       elsewhere
     # TODO: verify that no extra ingredients are in the cauldron?
     def brew(self):
         """Attempt to combine the elements in the cauldron into a
         matching potion.
 
-        If there's any ambiguity (i.e., multiple recipes fit the
-        contents of the Cauldron), let the player know their options
-        (ex., remove elements to narrow possibilities).
+        The operation fails if there's any ambiguity or no result.
 
         Note: this operation clears everything from the Cauldon if
         successful!
@@ -98,10 +94,7 @@ class Cauldron:
         Returns:
           result (Potion): a potion whose recipe matches the contents
                            of the Cauldron, OR
-          possible_results (list of Potion): list of potions that can
-                                             be created, OR
-          None: if the contents of the Cauldron don't match a potion in
-                the list
+          None: if there isn't exactly one potion that can be crafted
         """
         # possible_results contains potions whose minimum requirements
         # are met, so we need to make sure the max bound is satisfied
@@ -111,26 +104,9 @@ class Cauldron:
             range_check = [self.elements[ele['element']] <= ele['max']
                            for ele in self.possible_results[0].recipe]
 
+        result = None
         if len(self.possible_results) == 1 and all(range_check):
-            ele_list = list(self.elements.keys())
             result = self.possible_results[0]
-
-            print('Brew successful! Created ', result.name, ' from ',
-                  sep='', end='')
-            for ele in ele_list[0:-1]:
-                print(self.elements[ele], ' units of ', ele, ', ',
-                      sep='', end='')
-            print('and ', self.elements[ele_list[-1]], ' units of ',
-                  ele_list[-1], '.', sep='')
-
             self.empty()
-            return result
-        elif len(self.possible_results) > 0:
-            print('Progress! The following potions are possible:')
-            for potion in self.possible_results:
-                print(' -', potion.name)
-            return self.possible_results
-        else:
-            print("Oops, that's not a winning combination!",
-                  "Better try again...")
-            return None
+
+        return result

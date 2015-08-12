@@ -35,6 +35,7 @@ class Prototype:
                 command = input('> ')
             self.handle_input(command)
 
+    # TODO: use pprint module instead of manually formatting strings
     def handle_input(self, command):
         """Delegate handling of commands to helper functions.
 
@@ -270,7 +271,43 @@ class Prototype:
             self.cmd_error(cmd, *args, msg=error)
 
     def cmd_brew(self, cmd, *args):
-        self.placeholder()
+        if not self.main_cauldron.elements:
+            print("If you could brew potions from nothing you'd be rich! But",
+                  "that skill eludes you for now.", sep='\n')
+            return
+
+        result_count = len(self.main_cauldron.possible_results)
+        if result_count == 0:
+            print("The contents of the cauldron aren't reacting to form a",
+                  "complete potion yet. Keep at it!", sep='\n')
+        elif result_count > 1:
+            print("The mix is reacting! Judging from the appearance and odor",
+                  "wafting from it, the following brews could be created with",
+                  "just a little more effort:", sep='\n')
+            for potion in self.main_cauldron.possible_results:
+                print(" -", potion.name)
+        else:
+            elements_used = self.main_cauldron.elements
+            elements_list = list(elements_used)
+            result = self.main_cauldron.brew()
+            if result:
+                self.potions_brewed.append(result)
+                print("Brew successful! Created", result.name, "from ", end='')
+                for element in elements_list[:-1]:
+                    print(elements_used[element], " units of ", element, ", ",
+                          sep='', end='')
+                print("and ", elements_used[elements_list[-1]], " units of ",
+                      elements_list[-1], ".", sep='')
+            else:
+                print("The brew is nearly complete! Some of the element\n"
+                      "concentrations are too high to make a ",
+                      self.main_cauldron.possible_results[0].name, sep='')
+                for element in self.main_cauldron.possible_results[0].recipe:
+                    if elements_used[element['element']] > element['max']:
+                        print(" - ", element['element'], ": max ",
+                              element['max'], ", but ",
+                              elements_used[element['element']],
+                              " units present", sep='')
 
     def cmd_empty(self, cmd, *args):
         if not self.main_cauldron.elements:
@@ -279,6 +316,3 @@ class Prototype:
             self.main_cauldron.empty()
             print("Dissatisified with the mixture you're working on, you",
                   "drain the cauldron and prepare to start over.", sep='\n')
-
-    def placeholder(self):
-        print("|PLACEHOLDER TEXT|")
