@@ -271,6 +271,21 @@ class Prototype:
             self.cmd_error(cmd, *args, msg=error)
 
     def cmd_brew(self, cmd, *args):
+        """Brew the contents of the cauldron into a potion.
+
+        If the elements in the cauldron are a superset of those in a
+        recipe, and the proportions are within the specified limits,
+        add the potion to the list and empty the cauldron.
+
+        Currently, extra elements present will not affect success here
+        unless they comprise another recipe.
+
+        Arguments:
+          cmd (str): this command (required for consistency with other
+                     helper functions but otherwise not used here)
+          args: the main loop passes the other user-entered parameters
+                as positional arguments, but they're not used/checked
+        """
         if not self.main_cauldron.elements:
             print("If you could brew potions from nothing you'd be rich! But",
                   "that skill eludes you for now.", sep='\n')
@@ -310,6 +325,18 @@ class Prototype:
                               " units present", sep='')
 
     def cmd_empty(self, cmd, *args):
+        """Remove all elements from the cauldron.
+
+        If the cauldron is already empty, this wouldn't do anything
+        anyway, but it's always nice to give the player a different
+        bit of feedback.
+
+        Arguments:
+          cmd (str): this command (required for consistency with other
+                     helper functions but otherwised not used here)
+          args: the main loop passes the other user-entered parameters
+                as positional arguments, but they're not used/checked
+        """
         if not self.main_cauldron.elements:
             print("The cauldron is already empty. How convenient!")
         else:
