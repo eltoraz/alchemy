@@ -273,7 +273,12 @@ class Prototype:
         self.placeholder()
 
     def cmd_empty(self, cmd, *args):
-        self.placeholder()
+        if not self.main_cauldron.elements:
+            print("The cauldron is already empty. How convenient!")
+        else:
+            self.main_cauldron.empty()
+            print("Dissatisified with the mixture you're working on, you",
+                  "drain the cauldron and prepare to start over.", sep='\n')
 
     def placeholder(self):
         print("|PLACEHOLDER TEXT|")
