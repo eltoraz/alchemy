@@ -57,14 +57,16 @@ class Cauldron:
                 "Distilling cannot increase the element's concentration!"
 
         current_amount = self.elements.get(element, 0)
+        amount_distilled = 0
 
         if current_amount <= amount:
-            return self.elements.pop(element, current_amount)
+            amount_distilled = self.elements.pop(element, current_amount)
         else:
             self.elements[element] = self.elements[element] - amount
-            return amount
+            amount_distilled = amount
 
         self.update()
+        return amount_distilled
 
     def update(self):
         """Modify the internal state of the cauldron based on recent
