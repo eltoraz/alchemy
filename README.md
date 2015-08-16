@@ -1,9 +1,7 @@
-Some kind of alchemy system. Using Starbound crops for the moment since they were easy enough to extract from the game's assets,
-and collecting seeds for the farm on my home planet was one of the inspirations for this.
+An adventure game set in the universe of the the [Floraverse](http://floraverse.com/)
+webcomic.
 
-Starbound assets not included. They're easy enough to extract yourself though using the game's [included modding tools](http://community.playstarbound.com/index.php?threads/how-to-successfully-pack-and-unpack-pak-files.66649/).
+Eventually. Right now it's still in the early prototype-and-test phase.
 
-[Floraverse's flexible elemental magic system](http://floraverse.deviantart.com/journal/Elements-guide-425648924) fits better
-than Starbound's sci-fi setting.
-
-Requires jsonpatch
+As the name implies, there's a strong focus on potions - brewing, consuming,
+and otherwise manipulating them.
