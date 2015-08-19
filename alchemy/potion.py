@@ -151,9 +151,19 @@ def get_matches(elements, potion_list=potions):
     """
     element_range = namedtuple('element_range', 'min max')
     elements_set = set(elements.keys())
-    results = []
 
-    for potion in potion_list:
+    def check_match(potion):
+        """Helper function: check whether the elements present fit the
+        minimum requirements for the recipe of the given potion.
+
+        Arguments:
+          potion: a Potion
+
+        Returns:
+          True: if all elements in potion's recipe are present in the
+                elements passed into the caller
+          False: otherwise
+        """
         # converting min/max to a tuple in this dict for use later
         recipe_elements = {ele['element']: element_range(ele['min'],
                            ele['max']) for ele in potion.recipe}
@@ -162,9 +172,13 @@ def get_matches(elements, potion_list=potions):
         # provided set, and that the concentration is at least the
         # minimum required (leave checking the max. tolerated to the
         # caller)
-        if set(recipe_elements.keys()) <= elements_set and \
-           all([elements[ele] >= recipe_elements[ele].min for
-                ele in recipe_elements.keys()]):
-            results.append(potion)
+        if (set(recipe_elements.keys()) <= elements_set and
+            all([elements[ele] >= recipe_elements[ele].min for
+                 ele in recipe_elements.keys()])):
+            return True
+        else:
+            return False
+
+    results = [potion for potion in potions if check_match(potion)]
 
     return results
