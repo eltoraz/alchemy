@@ -80,14 +80,14 @@ def test_brew():
     eq_(test_cauldron.elements, {})
 
     # matches elements but not quantities
-    # (should still return a possible result, just not empty cauldron
+    # brew() returns None, but the potion is still in possible results
     too_much = Reagent('toomuch', 'morespirit', [{'element': 'Spirit',
                                                   'concentration': 0.6}])
     test_cauldron.add_ingredients(test_water, test_spirit, too_much)
     result = test_cauldron.brew()
     eq_(test_cauldron.elements, {'Water': 11.0, 'Spirit': 1.1})
-    eq_(len(result), 1)
-    eq_(result[0].name, 'weak healing potion')
+    eq_(result, None)
+    eq_(test_cauldron.possible_results[0].name, 'weak healing potion')
 
     # no match (empty cauldron)
     test_cauldron.empty()
