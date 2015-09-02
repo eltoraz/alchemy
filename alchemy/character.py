@@ -1,8 +1,9 @@
 """An actor in the game world - NPCs, monsters, and the player
 themself.
 """
-class Entity:
-    """An entity
+# TODO: probably a good idea to implement the player at some point
+class Character:
+    """A character
 
     Arguments:
       name (str): the actor's display name
