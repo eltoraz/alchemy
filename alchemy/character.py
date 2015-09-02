@@ -1,7 +1,6 @@
 """An actor in the game world - NPCs, monsters, and the player
 themself.
 """
-# TODO: probably a good idea to implement the player at some point
 class Character:
     """A character
 
@@ -20,9 +19,43 @@ class Character:
         # status
         self.effects = {}
 
-    # TODO: process effect ending triggers (once implemented)
     # TODO: eventually move away from just strings to reperesent/
     #       identify efffects?
+    # TODO: process effect start triggers (once implemented)
+    def apply_status(self, effect, duration):
+        """Apply the specified effect to the actor, applying any
+        associated triggers (stat buffs, speed modifiers, etc.)
+
+        If the effect is already present, extend the duration. Or if
+        it's a permanent status just set the duration to -1.
+
+        Passing a duration of 0 or less (apart from -1, which
+        signifies a permanent effect), or trying to apply a status
+        that already exists on a permanent basis, fails.
+
+        Arguments:
+          effect (str): the effect to add
+          duration (number): duration of the status effect in ticks
+
+        Returns:
+          duration of the effect in ticks (if the effect was already
+            present, this will be the extended time), OR
+          None, if no change was made
+        """
+        # no change if the specified effect is already present but
+        # permanent, or if the duration passed makes no sense
+        if (duration != -1 and duration <= 0 or 
+                self.effects.get(effect, 0) == -1):
+            return None
+
+        result = duration
+        if effect in self.effects and duration != -1:
+            result += self.effects[effect]
+        self.effects[effect] = result
+
+        return result
+
+    # TODO: process effect ending triggers (once implemented)
     def dispell(self, effect):
         """Remove the specified effect from the actor, processing all
         its ending triggers.
