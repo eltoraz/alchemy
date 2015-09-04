@@ -1,6 +1,5 @@
-'''
-Tests for the cauldron
-'''
+"""Tests for the cauldron
+"""
 from nose.tools import eq_, assert_raises
 
 from alchemy.reagent import Reagent

@@ -1,6 +1,5 @@
-'''
-Tests for reagents
-'''
+"""Tests for reagents
+"""
 from nose.tools import eq_
 
 import alchemy.reagent

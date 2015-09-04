@@ -1,6 +1,5 @@
-'''
-Tests for potions
-'''
+"""Tests for potions
+"""
 from nose.tools import eq_
 
 import alchemy.potion
