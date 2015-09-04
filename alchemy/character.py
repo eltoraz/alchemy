@@ -11,10 +11,12 @@ class Character:
 
     Attributes:
     """
-    def __init__(self, name='', max_hp=1):
+    # TODO: check that stat values are reasonable
+    def __init__(self, name='', hp=1):
         # basic properties
         self.name = name
-        self.max_hp = max_hp
+        self.max_hp = hp
+        self.current_hp = hp
 
         # status
         self.effects = {}
@@ -75,7 +77,8 @@ class Character:
         Arguments:
           speed (number): number of ticks to progress timers
         """
-        for effect in self.effects:
+        keys = [key for key in self.effects]
+        for effect in keys:
             # TODO: apply any, er, effects of the status condition
             #       (poison damage, etc.)
 
