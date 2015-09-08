@@ -5,6 +5,7 @@ your inventory. Drink (or otherwise apply) them, but most of the
 effects won't actually do anything yet!
 """
 from alchemy.cauldron import Cauldron
+from alchemy.character import Character
 from alchemy.elements import element_set
 from alchemy.reagent import get_reagents, reagents
 
@@ -15,6 +16,8 @@ class Prototype:
     def __init__(self):
         self.main_cauldron = Cauldron()
         self.potions_brewed = []
+
+        self.player = Character('you', 15)
 
     def run(self):
         """Setup the environment and run the main loop.
@@ -34,6 +37,8 @@ class Prototype:
             while command.strip() == '':
                 command = input('> ')
             self.handle_input(command)
+
+            self.player.tick()
 
     # TODO: use pprint module instead of manually formatting strings
     def handle_input(self, command):
@@ -85,6 +90,7 @@ class Prototype:
         print(" - check <object>: list information about specified category",
               "   - cauldron: elements in the cauldron",
               "   - reagents: ingredients you have in stock",
+              "   - self: player status",
               "   - potions: potions you've already crafted", sep='\n')
         print(" - add <reagents>: add the reagents (separated by spaces) to",
               "     the cauldron", sep='\n')
@@ -119,6 +125,13 @@ class Prototype:
         """
         if len(args) == 0:
             # high-level overview
+            print("You have ", self.player.current_hp, "/", self.player.max_hp,
+                  " hp left and have ", len(self.player.effects),
+                  sep='', end='')
+            if len(self.player.effects) == 1:
+                print(" status condition.")
+            else:
+                print(" status conditions.")
             print("You have", len(reagents), "types of reagents to work with.")
             if len(self.potions_brewed) == 1:
                 print("You've brewed 1 potion today.")
@@ -133,6 +146,7 @@ class Prototype:
             category = args[0].lower()
             reagent_options = ['reagents', 'ingredients']
             potion_options = ['potions', 'stock', 'brews']
+            self_options = ['self', 'player', 'me']
             if category == 'cauldron':
                 # cauldron status
                 if self.main_cauldron.elements:
@@ -162,6 +176,21 @@ class Prototype:
                     print(len(self.potions_brewed), "potions brewed:")
                     for i, potion in enumerate(self.potions_brewed):
                         print(" ", i+1, ". ", potion.name, sep='')
+            elif category in self_options:
+                # player status
+                print("You have ", self.player.current_hp, "/",
+                      self.player.max_hp, " hp left.", sep='')
+                if len(self.player.effects) == 0:
+                    print("You have no unusual status conditions.")
+                else:
+                    print("You are currently under the influence of the",
+                          "following status conditions:")
+                    player_effects = self.player.effects
+                    # TODO: needs to be updated if effects changes to
+                    #       use something other than string as the key
+                    for effect in player_effects:
+                        print(" - ", effect, ": ", player_effects[effect],
+                              " rounds", sep='')
             else:
                 # unknown argument(s)
                 self.cmd_error(' '.join(['checking'] + list(args)))
