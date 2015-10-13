@@ -1,4 +1,5 @@
-"""Prototype for actually playing around with the alchemy system.
+"""Text adventure prototype to start playing around with the alchemy
+framework.
 
 Mix ingredients in the cauldron to create potions, and store them in
 your inventory. Drink (or otherwise apply) them, but most of the
@@ -9,9 +10,9 @@ from alchemy.character import Character
 from alchemy.elements import element_set
 from alchemy.reagent import get_reagents, reagents
 
-class Prototype:
-    """The game (prototype) itself which provides a container for the
-    involved components.
+class Game:
+    """The game itself which provides a container for the involved
+    components.
     """
     def __init__(self):
         self.main_cauldron = Cauldron()
@@ -22,7 +23,7 @@ class Prototype:
     def run(self):
         """Setup the environment and run the main loop.
         """
-        print("Alchemy game prototype",
+        print("Alchemy game text adventure prototype",
               "By Bill Jameson (@eltoraz)", sep='\n', end='\n\n')
 
         print("Business has been slow in your potion shop today. You've left",
