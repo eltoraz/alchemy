@@ -18,7 +18,7 @@ class Game:
         self.main_cauldron = Cauldron()
         self.potions_brewed = []
 
-        self.player = Character('you', 15)
+        self.player = Character('Acacia', 15)
 
     def run(self):
         """Setup the environment and run the main loop.
