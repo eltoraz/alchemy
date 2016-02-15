@@ -1,24 +1,27 @@
 ### Protagonist
 
 - name: Acacia
-- species: (undecided, preference for something w/ avian and/or reptilian features)
+- species: coralshell turtle
 - gender: female
 - age: young adult
-- affinity: none (potentially shaped by in-game actions)
-
-Need to decide on species, esp. one that will reasonably fit with the native locales
+- affinity: undefined
 
 #### Background and motivation (game 1: text adventure)
 
-- born in Mew York City (causing no affinity to start out)
+- born in Mew York City (accounting for the lack of hereditary affinity)
+    - mother: coralshell turtle
+    - father: frilled petal dragon-coralshell turtle hybrid (ATM unsure whether
+      he leans more towards the characteristics of one or the other)
+    - with this parentage, Acacia's coral is more plant-like and faster-growing
+      than pure coralshell turtles
 
 - moved to Stemm, Citrico Archipelago, with family as a young teen
     - it was a small vacation home, but they made do since they needed to sell
       their Mew York home...
 
-- applied to and was indefinitely waitlisted at Kadath's university, so studied
-  potionmaking/alchemy at Citrico Capital's univerity instead
-    - graduated in top 10% of class, but coasted through without finding a specialty/passion
+- applied to and was effectively indefinitely waitlisted at Kadath's university,
+  so studied potionmaking/alchemy at Citrico Capital's univerity instead
+    - coasted through without finding a specialty/passion; graduated easily
     - moved back home afterwards... but that was a little more than a year ago
 
 - works at mother's bookshop in Stemm
