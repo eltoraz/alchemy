@@ -4,23 +4,25 @@
 - species: coralshell turtle
 - gender: female
 - age: young adult
-- affinity: undefined
+- affinity: Water/Clay (weak)
 
 #### Background and motivation (game 1: text adventure)
 
-- born in Mew York City (accounting for the lack of hereditary affinity)
-    - mother: coralshell turtle
-    - father: frilled petal dragon-coralshell turtle hybrid (ATM unsure whether
-      he leans more towards the characteristics of one or the other)
+- born in Mew York City
+    - mother: coralshell turtle (Clay affinity)
+    - father: frilled petal dragon (Water affinity, some coralshell turtle ancestry)
     - with this parentage, Acacia's coral is more plant-like and faster-growing
       than pure coralshell turtles
+    - weak initial affinity partially due to being born in Mew York's lack of
+      native magic and partially due to quirks of parents' affinities
 
 - moved to Stemm, Citrico Archipelago, with family as a young teen
-    - it was a small vacation home, but they made do since they needed to sell
-      their Mew York home...
+    - parents were hit by economic hardship and had to liquidate in Mew York,
+      but managed to keep their small vacation home
 
 - applied to and was effectively indefinitely waitlisted at Kadath's university,
   so studied potionmaking/alchemy at Citrico Capital's univerity instead
+    - a couple years after moving
     - coasted through without finding a specialty/passion; graduated easily
     - moved back home afterwards... but that was a little more than a year ago
 
