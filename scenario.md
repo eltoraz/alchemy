@@ -11,9 +11,9 @@
 - born in Mew York City
     - mother: coralshell turtle (Clay affinity)
     - father: frilled petal dragon (Water affinity, some coralshell turtle ancestry)
-    - with this parentage, Acacia's coral is more plant-like and faster-growing
+    - the FPD parentage makes Acacia's coral more plant-like and faster-growing
       than pure coralshell turtles
-        - like most coralshell turtles, hers does have some alchemical value, but
+        - like many coralshell turtles, hers does have some alchemical value, but
           its properties have escaped classification thus far (and no one has had
           the inclination to do more extensive testing on it)
     - weak initial affinity partially due to native Mew York's lack of
