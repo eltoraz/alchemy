@@ -8,21 +8,21 @@ from alchemy.cauldron import Cauldron
 
 test_water = Reagent('testwater', 'water reagent for testing',
                      [{'element': 'Water', 'concentration': 11.0}])
-test_spirit = Reagent('testspirit', 'spirit reagent for testing',
-                      [{'element': 'Spirit', 'concentration': 0.5}])
+test_soul = Reagent('testsoul', 'soul reagent for testing',
+                    [{'element': 'Soul', 'concentration': 0.5}])
 test_healpot = Potion('weak healing potion', PotionType['potion'],
                       'Just your average vitality-restoring potion',
                       [{'effect': 'restore_health', 'magnitude': 15.0}],
                       [{'element': 'Water', 'min': 10.0, 'max': 12.0},
-                       {'element': 'Spirit', 'min': 0.1, 'max': 1.0}])
+                       {'element': 'Soul', 'min': 0.1, 'max': 1.0}])
 
 def test_create():
     # Creating a cauldron with no ingredients has no elements
     empty_cauldron = Cauldron([])
     eq_(empty_cauldron.elements, {})
 
-    test_cauldron = Cauldron([test_water, test_spirit])
-    eq_(test_cauldron.elements, {'Water': 11.0, 'Spirit': 0.5})
+    test_cauldron = Cauldron([test_water, test_soul])
+    eq_(test_cauldron.elements, {'Water': 11.0, 'Soul': 0.5})
 
 def test_add_reagent():
     test_cauldron = Cauldron([])
@@ -32,14 +32,14 @@ def test_add_reagent():
                                   [{'element': 'Air', 'concentration': 4.0}]))
     eq_(test_cauldron.elements, {'Air': 4.0})
 
-    test_cauldron.add_ingredients(test_water, test_spirit)
-    eq_(test_cauldron.elements, {'Air': 4.0, 'Water': 11.0, 'Spirit': 0.5})
+    test_cauldron.add_ingredients(test_water, test_soul)
+    eq_(test_cauldron.elements, {'Air': 4.0, 'Water': 11.0, 'Soul': 0.5})
 
     test_cauldron.add_ingredients(test_water)
     eq_(test_cauldron.elements['Water'], 22.0)
 
 def test_distill():
-    test_cauldron = Cauldron([test_water, test_spirit])
+    test_cauldron = Cauldron([test_water, test_soul])
 
     # distill() can reduce the amount of a given element or remove it
     # entirely it raises an AssertionError if trying to increase an
@@ -47,28 +47,28 @@ def test_distill():
     # none removed)
     result = test_cauldron.distill('Water', 4.0)
     eq_(result, 4.0)
-    eq_(test_cauldron.elements, {'Water': 7.0, 'Spirit': 0.5})
+    eq_(test_cauldron.elements, {'Water': 7.0, 'Soul': 0.5})
 
     result = test_cauldron.distill('Water', 7.0)
     eq_(result, 7.0)
-    eq_(test_cauldron.elements, {'Spirit': 0.5})
+    eq_(test_cauldron.elements, {'Soul': 0.5})
 
     result = test_cauldron.distill('Water', 1.0)
     eq_(result, 0)
-    eq_(test_cauldron.elements, {'Spirit': 0.5})
+    eq_(test_cauldron.elements, {'Soul': 0.5})
 
-    neg_distill_cauldron = Cauldron([test_spirit])
+    neg_distill_cauldron = Cauldron([test_soul])
     assert_raises(AssertionError, neg_distill_cauldron.distill, 'Water', -11.0)
 
 def test_empty():
-    test_cauldron = Cauldron([test_water, test_spirit])
+    test_cauldron = Cauldron([test_water, test_soul])
     test_cauldron.empty()
     eq_(test_cauldron.elements, {})
     eq_(test_cauldron.possible_results, [])
 
 def test_brew():
     # matches a recipe
-    test_cauldron = Cauldron([test_water, test_spirit])
+    test_cauldron = Cauldron([test_water, test_soul])
     result = test_cauldron.brew()
     eq_(result.name, test_healpot.name)
     eq_(result.main_type, test_healpot.main_type)
@@ -80,11 +80,11 @@ def test_brew():
 
     # matches elements but not quantities
     # brew() returns None, but the potion is still in possible results
-    too_much = Reagent('toomuch', 'morespirit', [{'element': 'Spirit',
+    too_much = Reagent('toomuch', 'moresoul', [{'element': 'Soul',
                                                   'concentration': 0.6}])
-    test_cauldron.add_ingredients(test_water, test_spirit, too_much)
+    test_cauldron.add_ingredients(test_water, test_soul, too_much)
     result = test_cauldron.brew()
-    eq_(test_cauldron.elements, {'Water': 11.0, 'Spirit': 1.1})
+    eq_(test_cauldron.elements, {'Water': 11.0, 'Soul': 1.1})
     eq_(result, None)
     eq_(test_cauldron.possible_results[0].name, 'weak healing potion')
 
