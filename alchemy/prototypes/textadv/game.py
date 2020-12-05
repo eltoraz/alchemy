@@ -7,7 +7,7 @@ effects won't actually do anything yet!
 """
 from alchemy.cauldron import Cauldron
 from alchemy.character import Character
-from alchemy.elements import element_set
+from alchemy.elements import primary_elements
 from alchemy.reagent import get_reagents, reagents
 
 class Game:
@@ -18,13 +18,13 @@ class Game:
         self.main_cauldron = Cauldron()
         self.potions_brewed = []
 
-        self.player = Character('Acacia', 15)
+        self.player = Character('???', 15)
 
     def run(self):
         """Setup the environment and run the main loop.
         """
         print("Alchemy game text adventure prototype",
-              "By Bill Jameson (@eltoraz)", sep='\n', end='\n\n')
+              "By Isy (@eltoraz)", sep='\n', end='\n\n')
 
         print("Business has been slow in your potion shop today. You've left",
               "a sign on the counter and gone out back to brew up some more",
@@ -267,7 +267,7 @@ class Game:
                     "arguments specified - max 2, the element and amount)"
         else:
             element = args[0].capitalize()
-            if element not in element_set:
+            if element not in primary_elements.keys:
                 error = "You're not quite sure why it crossed your mind\n" + \
                         "try to distill " + element + ", but you rightly\n" + \
                         "realize that it's not an element."
