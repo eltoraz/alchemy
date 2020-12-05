@@ -7,7 +7,6 @@ really like to keep the scope of this pretty narrow for now.
 
 - Open world, abundance of reagents in *The Elder Scrolls*, particularly *Oblivion* and *Skyrim*
 - Exploring the universe in *Starbound*, collecting seeds, and building a farm of alien and more mundane crops
-- The approach to magic outlined in [this page of the flora comic](http://floraverse.com/comic/flora/page/208-basic-guide-to-magic/)
 
 ### The gist of it
 

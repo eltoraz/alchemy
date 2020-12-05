@@ -1,48 +1,46 @@
 ### Protagonist
 
-- name: Acacia
-- species: coralshell turtle
-- gender: female
+- name: [] (she/her)
+- species: turtle
 - age: young adult
-- affinity: Water/Clay (weak)
+- affinity: Water (weak), Earth (weak)
 
-#### Background and motivation
+#### Background and motivations
 
-- born in Mew York City
-    - mother: coralshell turtle (Clay affinity)
-    - father: frilled petal dragon (Water affinity, some coralshell turtle ancestry)
-    - the FPD parentage makes Acacia's coral more plant-like and faster-growing
-      than pure coralshell turtles
-        - like many coralshell turtles, hers does have some alchemical value, but
-          its properties have escaped classification thus far (and no one has had
+- born in suburbs of a big city
+    - mother: turtle (Earth affinity)
+    - father: floral dragon (Water & Earth affinity)
+    - fringes of her shell grow out, but are brittle and break away painlessly 
+        - the pieces do have some alchemical value, but
+          their properties have escaped classification thus far (and no one has had
           the inclination to do more extensive testing on it)
-    - weak initial affinity partially due to native Mew York's lack of
-      ambient magic and partially due to quirks of parents' affinities
+    - weak initial affinity is environmental- childhood home city had low ambient magic
 
-- moved to Stemm, Citrico Archipelago, with parents as a young teen
-    - they were hit by economic hardship and had to liquidate in Mew York, but
-      settled debts and kept their small vacation home
+- famliy was hit by economic hardship with parents as a young teen, had to move to
+  a less expensive area
+    - wound up with a small homestead close to a village on a medium-size island
+      in an archipelago
     - her mother took a job at a small bookshop (eventually taking over when the
       owners moved on to other pursuits)
-    - her father took an interest in local politics, especially as the frequent
-      commutes to the Capital allowed him to visit his daughter at university
+    - her father took an interest in local politics, but was drawn in to the point
+      of being absent at home
 
-- applied to and was effectively indefinitely waitlisted at Kadath's university,
-  so studied potionmaking/alchemy at Citrico Capital's univerity instead
+- applied to and was effectively indefinitely waitlisted at a prestigious magic
+  university on the mainland, so studied potionmaking/alchemy at a local school
     - applied a couple years after moving
     - her parents separated (amicably) during this time
     - coasted through without finding a specialty/passion; took a variety of
       classes in different disciplines but without a lot of depth
     - moved back home afterwards... but that was a little more than a year ago
 
-- works at mother's bookshop in Stemm
+- works at mother's bookshop, with this kind of mindset:
     - she has developed a convincing "customer service" facade but doesn't
       experience much in the way of personal fulfillment from this day job
     - it's nice always having something to read, but having to put down a good
       book to help a customer can be irksome
     - and being constantly cheerful is rather tiring!
     - no storage space at home, so her old college supplies, incl. alchemy
-      apparati, are in a (surprisingly roomy) closet out in the back of the shop
+      apparati, are in a closet out in the back of the shop
         - one that could, say, be converted into a makeshift lab...
 
 - motivated by building frustration with what she perceives as stagnation with
@@ -57,3 +55,7 @@
       wildlife can be dangerous...
     - it's a daunting prospect, and it's a project she's had trouble figuring out
       how to even start
+
+### Other Characters
+
+- Acacia (bird, she/her, Air/Lightning)
