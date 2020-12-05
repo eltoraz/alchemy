@@ -10,7 +10,7 @@
         </effects>
         <recipe>
             <element element="Water" min="10.0" max="12.0"/>
-            <element element="Spirit" min="0.1" max="1.0"/>
+            <element element="Soul" min="0.1" max="1.0"/>
         </recipe>
     </potion>
     <potion name="haste salve">
@@ -21,7 +21,7 @@
         </effects>
         <recipe>
             <element element="Fire" min="5.0" max="10.0"/>
-            <element element="Storm" min="6.0" max="8.0"/>
+            <element element="Lightning" min="6.0" max="8.0"/>
         </recipe>
     </potion>
     <potion name="ironskin salve">
@@ -32,7 +32,7 @@
         </effects>
         <recipe>
             <element element="Earth" min="15.0" max="25.0"/>
-            <element element="Crystal" min="1.0" max="2.0"/>
+            <element element="Light" min="1.0" max="2.0"/>
         </recipe>
     </potion>
     <potion name="weak explosive">
@@ -47,7 +47,7 @@
         <recipe>
             <element element="Fire" min="8.0" max="12.0"/>
             <element element="Air" min="1.0" max="3.5"/>
-            <element element="Storm" min="0.1" max="0.75"/>
+            <element element="Lightning" min="0.1" max="0.75"/>
         </recipe>
     </potion>
     <potion name="irritating mist">
@@ -63,7 +63,7 @@
         </effects>
         <recipe>
             <element element="Air" min="6.0" max="9.0"/>
-            <element element="Poison" min="0.5" max="1.5"/>
+            <element element="Acid" min="0.5" max="1.5"/>
         </recipe>
     </potion>
 </potions>
